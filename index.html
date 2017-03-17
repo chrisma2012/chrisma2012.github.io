@@ -306,7 +306,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2017/03/16/Christopherma2012.github.io/tags/javascript/index/" data-id="cj0d3xll8000gokv1hwuui4tg" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2017/03/16/Christopherma2012.github.io/tags/javascript/index/" data-id="cj0d4576s000gy4v1a3ltit1r" class="article-share-link">Share</a>
       
       
     </footer>
@@ -596,7 +596,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2017/03/16/Christopherma2012.github.io/tags/ECMAScript6学习笔记/index/" data-id="cj0d3xlks000eokv156kdnfyg" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2017/03/16/Christopherma2012.github.io/tags/ECMAScript6学习笔记/index/" data-id="cj0d4576s000fy4v1so9ivfor" class="article-share-link">Share</a>
       
       
     </footer>
@@ -758,7 +758,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2017/03/16/Christopherma2012.github.io/js/script/" data-id="cj0d3xlkd0008okv1300bmpdj" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2017/03/16/Christopherma2012.github.io/js/script/" data-id="cj0d4575x0007y4v1ht30qp2w" class="article-share-link">Share</a>
       
       
     </footer>
@@ -1019,7 +1019,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2017/03/16/Christopherma2012.github.io/javascript/index/" data-id="cj0d3xlkd0007okv1bsi2t3l1" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2017/03/16/Christopherma2012.github.io/javascript/index/" data-id="cj0d4575x0006y4v1dx0q47h9" class="article-share-link">Share</a>
       
       
     </footer>
@@ -1557,7 +1557,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2017/03/16/Christopherma2012.github.io/index/" data-id="cj0d3xli60001okv1rxjr7jfp" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2017/03/16/Christopherma2012.github.io/index/" data-id="cj0d457520001y4v17exfl10q" class="article-share-link">Share</a>
       
       
     </footer>
@@ -1612,7 +1612,7 @@ b=20===a[0].offsetTop||15===a[0].offsetTop;a.remove();return b}());f.extend(b.de
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2017/03/16/Christopherma2012.github.io/fancybox/jquery.fancybox.pack/" data-id="cj0d3xlkd0006okv1b29qm416" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2017/03/16/Christopherma2012.github.io/fancybox/jquery.fancybox.pack/" data-id="cj0d4575x0008y4v1hw226icn" class="article-share-link">Share</a>
       
       
     </footer>
@@ -3561,197 +3561,7 @@ b=20===a[0].offsetTop||15===a[0].offsetTop;a.remove();return b}());f.extend(b.de
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2017/03/16/Christopherma2012.github.io/fancybox/jquery.fancybox/" data-id="cj0d3xlkd0005okv1mjc4718s" class="article-share-link">Share</a>
-      
-      
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-Christopherma2012.github.io/fancybox/helpers/jquery.fancybox-thumbs" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2017/03/16/Christopherma2012.github.io/fancybox/helpers/jquery.fancybox-thumbs/" class="article-date">
-  <time datetime="2017-03-16T08:33:06.676Z" itemprop="datePublished">2017-03-16</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-         /*!
- * Thumbnail helper for fancyBox
- * version: 1.0.7 (Mon, 01 Oct 2012)
- * @requires fancyBox v2.0 or later
- *
- * Usage:
- *     $(".fancybox").fancybox({
- *         helpers : {
- *             thumbs: {
- *                 width  : 50,
- *                 height : 50
- *             }
- *         }
- *     });
- *
- */
-;(function ($) {
-	//Shortcut for fancyBox object
-	var F = $.fancybox;
-
-	//Add helper object
-	F.helpers.thumbs = {
-		defaults : {
-			width    : 50,       // thumbnail width
-			height   : 50,       // thumbnail height
-			position : 'bottom', // 'top' or 'bottom'
-			source   : function ( item ) {  // function to obtain the URL of the thumbnail image
-				var href;
-
-				if (item.element) {
-					href = $(item.element).find('img').attr('src');
-				}
-
-				if (!href && item.type === 'image' && item.href) {
-					href = item.href;
-				}
-
-				return href;
-			}
-		},
-
-		wrap  : null,
-		list  : null,
-		width : 0,
-
-		init: function (opts, obj) {
-			var that = this,
-				list,
-				thumbWidth  = opts.width,
-				thumbHeight = opts.height,
-				thumbSource = opts.source;
-
-			//Build list structure
-			list = '';
-
-			for (var n = 0; n < obj.group.length; n++) {
-				list += '<li><a style="width:' + thumbWidth + 'px;height:' + thumbHeight + 'px;" href="javascript:jQuery.fancybox.jumpto(' + n + ');" target="_blank" rel="external"></a></li>';
-			}
-
-			this.wrap = $('<div id="fancybox-thumbs"></div>').addClass(opts.position).appendTo('body');
-			this.list = $('<ul>' + list + '</ul>').appendTo(this.wrap);
-
-			//Load each thumbnail
-			$.each(obj.group, function (i) {
-				var el   = obj.group[ i ],
-					href = thumbSource( el );
-
-				if (!href) {
-					return;
-				}
-
-				$("<img>").load(function () {
-					var width  = this.width,
-						height = this.height,
-						widthRatio, heightRatio, parent;
-
-					if (!that.list || !width || !height) {
-						return;
-					}
-
-					//Calculate thumbnail width/height and center it
-					widthRatio  = width / thumbWidth;
-					heightRatio = height / thumbHeight;
-
-					parent = that.list.children().eq(i).find('a');
-
-					if (widthRatio >= 1 && heightRatio >= 1) {
-						if (widthRatio > heightRatio) {
-							width  = Math.floor(width / heightRatio);
-							height = thumbHeight;
-
-						} else {
-							width  = thumbWidth;
-							height = Math.floor(height / widthRatio);
-						}
-					}
-
-					$(this).css({
-						width  : width,
-						height : height,
-						top    : Math.floor(thumbHeight / 2 - height / 2),
-						left   : Math.floor(thumbWidth / 2 - width / 2)
-					});
-
-					parent.width(thumbWidth).height(thumbHeight);
-
-					$(this).hide().appendTo(parent).fadeIn(300);
-
-				})
-				.attr('src',   href)
-				.attr('title', el.title);
-			});
-
-			//Set initial width
-			this.width = this.list.children().eq(0).outerWidth(true);
-
-			this.list.width(this.width * (obj.group.length + 1)).css('left', Math.floor($(window).width() * 0.5 - (obj.index * this.width + this.width * 0.5)));
-		},
-
-		beforeLoad: function (opts, obj) {
-			//Remove self if gallery do not have at least two items
-			if (obj.group.length < 2) {
-				obj.helpers.thumbs = false;
-
-				return;
-			}
-
-			//Increase bottom margin to give space for thumbs
-			obj.margin[ opts.position === 'top' ? 0 : 2 ] += ((opts.height) + 15);
-		},
-
-		afterShow: function (opts, obj) {
-			//Check if exists and create or update list
-			if (this.list) {
-				this.onUpdate(opts, obj);
-
-			} else {
-				this.init(opts, obj);
-			}
-
-			//Set active element
-			this.list.children().removeClass('active').eq(obj.index).addClass('active');
-		},
-
-		//Center list
-		onUpdate: function (opts, obj) {
-			if (this.list) {
-				this.list.stop(true).animate({
-					'left': Math.floor($(window).width() * 0.5 - (obj.index * this.width + this.width * 0.5))
-				}, 150);
-			}
-		},
-
-		beforeClose: function () {
-			if (this.wrap) {
-				this.wrap.remove();
-			}
-
-			this.wrap  = null;
-			this.list  = null;
-			this.width = 0;
-		}
-	}
-
-}(jQuery));
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://yoursite.com/2017/03/16/Christopherma2012.github.io/fancybox/helpers/jquery.fancybox-thumbs/" data-id="cj0d3xlks000fokv15w6kwcak" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2017/03/16/Christopherma2012.github.io/fancybox/jquery.fancybox/" data-id="cj0d4575x0005y4v1cvzw71rt" class="article-share-link">Share</a>
       
       
     </footer>
@@ -4049,7 +3859,7 @@ b=20===a[0].offsetTop||15===a[0].offsetTop;a.remove();return b}());f.extend(b.de
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2017/03/16/Christopherma2012.github.io/fancybox/jquery.fancybox/" data-id="cj0d3xljx0004okv1wyed1njp" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2017/03/16/Christopherma2012.github.io/fancybox/jquery.fancybox/" data-id="cj0d4575h0004y4v1lyctjm0y" class="article-share-link">Share</a>
       
       
     </footer>
@@ -4062,6 +3872,196 @@ b=20===a[0].offsetTop||15===a[0].offsetTop;a.remove();return b}());f.extend(b.de
     <article id="post-Christopherma2012.github.io/fancybox/helpers/jquery.fancybox-thumbs" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
     <a href="/2017/03/16/Christopherma2012.github.io/fancybox/helpers/jquery.fancybox-thumbs/" class="article-date">
+  <time datetime="2017-03-16T08:33:06.676Z" itemprop="datePublished">2017-03-16</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+         /*!
+ * Thumbnail helper for fancyBox
+ * version: 1.0.7 (Mon, 01 Oct 2012)
+ * @requires fancyBox v2.0 or later
+ *
+ * Usage:
+ *     $(".fancybox").fancybox({
+ *         helpers : {
+ *             thumbs: {
+ *                 width  : 50,
+ *                 height : 50
+ *             }
+ *         }
+ *     });
+ *
+ */
+;(function ($) {
+	//Shortcut for fancyBox object
+	var F = $.fancybox;
+
+	//Add helper object
+	F.helpers.thumbs = {
+		defaults : {
+			width    : 50,       // thumbnail width
+			height   : 50,       // thumbnail height
+			position : 'bottom', // 'top' or 'bottom'
+			source   : function ( item ) {  // function to obtain the URL of the thumbnail image
+				var href;
+
+				if (item.element) {
+					href = $(item.element).find('img').attr('src');
+				}
+
+				if (!href && item.type === 'image' && item.href) {
+					href = item.href;
+				}
+
+				return href;
+			}
+		},
+
+		wrap  : null,
+		list  : null,
+		width : 0,
+
+		init: function (opts, obj) {
+			var that = this,
+				list,
+				thumbWidth  = opts.width,
+				thumbHeight = opts.height,
+				thumbSource = opts.source;
+
+			//Build list structure
+			list = '';
+
+			for (var n = 0; n < obj.group.length; n++) {
+				list += '<li><a style="width:' + thumbWidth + 'px;height:' + thumbHeight + 'px;" href="javascript:jQuery.fancybox.jumpto(' + n + ');" target="_blank" rel="external"></a></li>';
+			}
+
+			this.wrap = $('<div id="fancybox-thumbs"></div>').addClass(opts.position).appendTo('body');
+			this.list = $('<ul>' + list + '</ul>').appendTo(this.wrap);
+
+			//Load each thumbnail
+			$.each(obj.group, function (i) {
+				var el   = obj.group[ i ],
+					href = thumbSource( el );
+
+				if (!href) {
+					return;
+				}
+
+				$("<img>").load(function () {
+					var width  = this.width,
+						height = this.height,
+						widthRatio, heightRatio, parent;
+
+					if (!that.list || !width || !height) {
+						return;
+					}
+
+					//Calculate thumbnail width/height and center it
+					widthRatio  = width / thumbWidth;
+					heightRatio = height / thumbHeight;
+
+					parent = that.list.children().eq(i).find('a');
+
+					if (widthRatio >= 1 && heightRatio >= 1) {
+						if (widthRatio > heightRatio) {
+							width  = Math.floor(width / heightRatio);
+							height = thumbHeight;
+
+						} else {
+							width  = thumbWidth;
+							height = Math.floor(height / widthRatio);
+						}
+					}
+
+					$(this).css({
+						width  : width,
+						height : height,
+						top    : Math.floor(thumbHeight / 2 - height / 2),
+						left   : Math.floor(thumbWidth / 2 - width / 2)
+					});
+
+					parent.width(thumbWidth).height(thumbHeight);
+
+					$(this).hide().appendTo(parent).fadeIn(300);
+
+				})
+				.attr('src',   href)
+				.attr('title', el.title);
+			});
+
+			//Set initial width
+			this.width = this.list.children().eq(0).outerWidth(true);
+
+			this.list.width(this.width * (obj.group.length + 1)).css('left', Math.floor($(window).width() * 0.5 - (obj.index * this.width + this.width * 0.5)));
+		},
+
+		beforeLoad: function (opts, obj) {
+			//Remove self if gallery do not have at least two items
+			if (obj.group.length < 2) {
+				obj.helpers.thumbs = false;
+
+				return;
+			}
+
+			//Increase bottom margin to give space for thumbs
+			obj.margin[ opts.position === 'top' ? 0 : 2 ] += ((opts.height) + 15);
+		},
+
+		afterShow: function (opts, obj) {
+			//Check if exists and create or update list
+			if (this.list) {
+				this.onUpdate(opts, obj);
+
+			} else {
+				this.init(opts, obj);
+			}
+
+			//Set active element
+			this.list.children().removeClass('active').eq(obj.index).addClass('active');
+		},
+
+		//Center list
+		onUpdate: function (opts, obj) {
+			if (this.list) {
+				this.list.stop(true).animate({
+					'left': Math.floor($(window).width() * 0.5 - (obj.index * this.width + this.width * 0.5))
+				}, 150);
+			}
+		},
+
+		beforeClose: function () {
+			if (this.wrap) {
+				this.wrap.remove();
+			}
+
+			this.wrap  = null;
+			this.list  = null;
+			this.width = 0;
+		}
+	}
+
+}(jQuery));
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2017/03/16/Christopherma2012.github.io/fancybox/helpers/jquery.fancybox-thumbs/" data-id="cj0d4576s000ey4v1mzfmcexb" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-Christopherma2012.github.io/fancybox/helpers/jquery.fancybox-media" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2017/03/16/Christopherma2012.github.io/fancybox/helpers/jquery.fancybox-media/" class="article-date">
   <time datetime="2017-03-16T08:33:06.660Z" itemprop="datePublished">2017-03-16</time>
 </a>
     
@@ -4071,65 +4071,209 @@ b=20===a[0].offsetTop||15===a[0].offsetTop;a.remove();return b}());f.extend(b.de
     
     <div class="article-entry" itemprop="articleBody">
       
-        #fancybox-thumbs {
-	position: fixed;
-	left: 0;
-	width: 100%;
-	overflow: hidden;
-	z-index: 8050;
-}
+        /*!
+ * Media helper for fancyBox
+ * version: 1.0.6 (Fri, 14 Jun 2013)
+ * @requires fancyBox v2.0 or later
+ *
+ * Usage:
+ *     $(".fancybox").fancybox({
+ *         helpers : {
+ *             media: true
+ *         }
+ *     });
+ *
+ * Set custom URL parameters:
+ *     $(".fancybox").fancybox({
+ *         helpers : {
+ *             media: {
+ *                 youtube : {
+ *                     params : {
+ *                         autoplay : 0
+ *                     }
+ *                 }
+ *             }
+ *         }
+ *     });
+ *
+ * Or:
+ *     $(".fancybox").fancybox({,
+ *         helpers : {
+ *             media: true
+ *         },
+ *         youtube : {
+ *             autoplay: 0
+ *         }
+ *     });
+ *
+ *  Supports:
+ *
+ *      Youtube
+ *          http://www.youtube.com/watch?v=opj24KnzrWo
+ *          http://www.youtube.com/embed/opj24KnzrWo
+ *          http://youtu.be/opj24KnzrWo
+ *			http://www.youtube-nocookie.com/embed/opj24KnzrWo
+ *      Vimeo
+ *          http://vimeo.com/40648169
+ *          http://vimeo.com/channels/staffpicks/38843628
+ *          http://vimeo.com/groups/surrealism/videos/36516384
+ *          http://player.vimeo.com/video/45074303
+ *      Metacafe
+ *          http://www.metacafe.com/watch/7635964/dr_seuss_the_lorax_movie_trailer/
+ *          http://www.metacafe.com/watch/7635964/
+ *      Dailymotion
+ *          http://www.dailymotion.com/video/xoytqh_dr-seuss-the-lorax-premiere_people
+ *      Twitvid
+ *          http://twitvid.com/QY7MD
+ *      Twitpic
+ *          http://twitpic.com/7p93st
+ *      Instagram
+ *          http://instagr.am/p/IejkuUGxQn/
+ *          http://instagram.com/p/IejkuUGxQn/
+ *      Google maps
+ *          http://maps.google.com/maps?q=Eiffel+Tower,+Avenue+Gustave+Eiffel,+Paris,+France&t=h&z=17
+ *          http://maps.google.com/?ll=48.857995,2.294297&spn=0.007666,0.021136&t=m&z=16
+ *          http://maps.google.com/?ll=48.859463,2.292626&spn=0.000965,0.002642&t=m&z=19&layer=c&cbll=48.859524,2.292532&panoid=YJ0lq28OOy3VT2IqIuVY0g&cbp=12,151.58,,0,-15.56
+ */
+;(function ($) {
+	"use strict";
 
-#fancybox-thumbs.bottom {
-	bottom: 2px;
-}
+	//Shortcut for fancyBox object
+	var F = $.fancybox,
+		format = function( url, rez, params ) {
+			params = params || '';
 
-#fancybox-thumbs.top {
-	top: 2px;
-}
+			if ( $.type( params ) === "object" ) {
+				params = $.param(params, true);
+			}
 
-#fancybox-thumbs ul {
-	position: relative;
-	list-style: none;
-	margin: 0;
-	padding: 0;
-}
+			$.each(rez, function(key, value) {
+				url = url.replace( '$' + key, value || '' );
+			});
 
-#fancybox-thumbs ul li {
-	float: left;
-	padding: 1px;
-	opacity: 0.5;
-}
+			if (params.length) {
+				url += ( url.indexOf('?') > 0 ? '&' : '?' ) + params;
+			}
 
-#fancybox-thumbs ul li.active {
-	opacity: 0.75;
-	padding: 0;
-	border: 1px solid #fff;
-}
+			return url;
+		};
 
-#fancybox-thumbs ul li:hover {
-	opacity: 1;
-}
+	//Add helper object
+	F.helpers.media = {
+		defaults : {
+			youtube : {
+				matcher : /(youtube\.com|youtu\.be|youtube-nocookie\.com)\/(watch\?v=|v\/|u\/|embed\/?)?(videoseries\?list=(.*)|[\w-]{11}|\?listType=(.*)&list=(.*)).*/i,
+				params  : {
+					autoplay    : 1,
+					autohide    : 1,
+					fs          : 1,
+					rel         : 0,
+					hd          : 1,
+					wmode       : 'opaque',
+					enablejsapi : 1
+				},
+				type : 'iframe',
+				url  : '//www.youtube.com/embed/$3'
+			},
+			vimeo : {
+				matcher : /(?:vimeo(?:pro)?.com)\/(?:[^\d]+)?(\d+)(?:.*)/,
+				params  : {
+					autoplay      : 1,
+					hd            : 1,
+					show_title    : 1,
+					show_byline   : 1,
+					show_portrait : 0,
+					fullscreen    : 1
+				},
+				type : 'iframe',
+				url  : '//player.vimeo.com/video/$1'
+			},
+			metacafe : {
+				matcher : /metacafe.com\/(?:watch|fplayer)\/([\w\-]{1,10})/,
+				params  : {
+					autoPlay : 'yes'
+				},
+				type : 'swf',
+				url  : function( rez, params, obj ) {
+					obj.swf.flashVars = 'playerVars=' + $.param( params, true );
 
-#fancybox-thumbs ul li a {
-	display: block;
-	position: relative;
-	overflow: hidden;
-	border: 1px solid #222;
-	background: #111;
-	outline: none;
-}
+					return '//www.metacafe.com/fplayer/' + rez[1] + '/.swf';
+				}
+			},
+			dailymotion : {
+				matcher : /dailymotion.com\/video\/(.*)\/?(.*)/,
+				params  : {
+					additionalInfos : 0,
+					autoStart : 1
+				},
+				type : 'swf',
+				url  : '//www.dailymotion.com/swf/video/$1'
+			},
+			twitvid : {
+				matcher : /twitvid\.com\/([a-zA-Z0-9_\-\?\=]+)/i,
+				params  : {
+					autoplay : 0
+				},
+				type : 'iframe',
+				url  : '//www.twitvid.com/embed.php?guid=$1'
+			},
+			twitpic : {
+				matcher : /twitpic\.com\/(?!(?:place|photos|events)\/)([a-zA-Z0-9\?\=\-]+)/i,
+				type : 'image',
+				url  : '//twitpic.com/show/full/$1/'
+			},
+			instagram : {
+				matcher : /(instagr\.am|instagram\.com)\/p\/([a-zA-Z0-9_\-]+)\/?/i,
+				type : 'image',
+				url  : '//$1/p/$2/media/?size=l'
+			},
+			google_maps : {
+				matcher : /maps\.google\.([a-z]{2,3}(\.[a-z]{2})?)\/(\?ll=|maps\?)(.*)/i,
+				type : 'iframe',
+				url  : function( rez ) {
+					return '//maps.google.' + rez[1] + '/' + rez[3] + '' + rez[4] + '&output=' + (rez[4].indexOf('layer=c') > 0 ? 'svembed' : 'embed');
+				}
+			}
+		},
 
-#fancybox-thumbs ul li img {
-	display: block;
-	position: relative;
-	border: 0;
-	padding: 0;
-	max-width: none;
-}
+		beforeLoad : function(opts, obj) {
+			var url   = obj.href || '',
+				type  = false,
+				what,
+				item,
+				rez,
+				params;
+
+			for (what in opts) {
+				if (opts.hasOwnProperty(what)) {
+					item = opts[ what ];
+					rez  = url.match( item.matcher );
+
+					if (rez) {
+						type   = item.type;
+						params = $.extend(true, {}, item.params, obj[ what ] || ($.isPlainObject(opts[ what ]) ? opts[ what ].params : null));
+
+						url = $.type( item.url ) === "function" ? item.url.call( this, rez, params, obj ) : format( item.url, rez, params );
+
+						break;
+					}
+				}
+			}
+
+			if (type) {
+				obj.href = url;
+				obj.type = type;
+
+				obj.autoHeight = false;
+			}
+		}
+	};
+
+}(jQuery));
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2017/03/16/Christopherma2012.github.io/fancybox/helpers/jquery.fancybox-thumbs/" data-id="cj0d3xlks0009okv146eypeeh" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2017/03/16/Christopherma2012.github.io/fancybox/helpers/jquery.fancybox-media/" data-id="cj0d4576d000cy4v18x4adm53" class="article-share-link">Share</a>
       
       
     </footer>

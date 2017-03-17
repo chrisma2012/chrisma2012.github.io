@@ -64,9 +64,9 @@
       <div class="outer">
         <section id="main">
   
-    <article id="post-Christopherma2012.github.io/fancybox/helpers/jquery.fancybox-media" class="article article-type-post" itemscope itemprop="blogPost">
+    <article id="post-Christopherma2012.github.io/fancybox/helpers/jquery.fancybox-thumbs" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
-    <a href="/2017/03/16/Christopherma2012.github.io/fancybox/helpers/jquery.fancybox-media/" class="article-date">
+    <a href="/2017/03/16/Christopherma2012.github.io/fancybox/helpers/jquery.fancybox-thumbs/" class="article-date">
   <time datetime="2017-03-16T08:33:06.660Z" itemprop="datePublished">2017-03-16</time>
 </a>
     
@@ -76,331 +76,65 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        /*!
- * Media helper for fancyBox
- * version: 1.0.6 (Fri, 14 Jun 2013)
- * @requires fancyBox v2.0 or later
- *
- * Usage:
- *     $(".fancybox").fancybox({
- *         helpers : {
- *             media: true
- *         }
- *     });
- *
- * Set custom URL parameters:
- *     $(".fancybox").fancybox({
- *         helpers : {
- *             media: {
- *                 youtube : {
- *                     params : {
- *                         autoplay : 0
- *                     }
- *                 }
- *             }
- *         }
- *     });
- *
- * Or:
- *     $(".fancybox").fancybox({,
- *         helpers : {
- *             media: true
- *         },
- *         youtube : {
- *             autoplay: 0
- *         }
- *     });
- *
- *  Supports:
- *
- *      Youtube
- *          http://www.youtube.com/watch?v=opj24KnzrWo
- *          http://www.youtube.com/embed/opj24KnzrWo
- *          http://youtu.be/opj24KnzrWo
- *			http://www.youtube-nocookie.com/embed/opj24KnzrWo
- *      Vimeo
- *          http://vimeo.com/40648169
- *          http://vimeo.com/channels/staffpicks/38843628
- *          http://vimeo.com/groups/surrealism/videos/36516384
- *          http://player.vimeo.com/video/45074303
- *      Metacafe
- *          http://www.metacafe.com/watch/7635964/dr_seuss_the_lorax_movie_trailer/
- *          http://www.metacafe.com/watch/7635964/
- *      Dailymotion
- *          http://www.dailymotion.com/video/xoytqh_dr-seuss-the-lorax-premiere_people
- *      Twitvid
- *          http://twitvid.com/QY7MD
- *      Twitpic
- *          http://twitpic.com/7p93st
- *      Instagram
- *          http://instagr.am/p/IejkuUGxQn/
- *          http://instagram.com/p/IejkuUGxQn/
- *      Google maps
- *          http://maps.google.com/maps?q=Eiffel+Tower,+Avenue+Gustave+Eiffel,+Paris,+France&t=h&z=17
- *          http://maps.google.com/?ll=48.857995,2.294297&spn=0.007666,0.021136&t=m&z=16
- *          http://maps.google.com/?ll=48.859463,2.292626&spn=0.000965,0.002642&t=m&z=19&layer=c&cbll=48.859524,2.292532&panoid=YJ0lq28OOy3VT2IqIuVY0g&cbp=12,151.58,,0,-15.56
- */
-;(function ($) {
-	"use strict";
-
-	//Shortcut for fancyBox object
-	var F = $.fancybox,
-		format = function( url, rez, params ) {
-			params = params || '';
-
-			if ( $.type( params ) === "object" ) {
-				params = $.param(params, true);
-			}
-
-			$.each(rez, function(key, value) {
-				url = url.replace( '$' + key, value || '' );
-			});
-
-			if (params.length) {
-				url += ( url.indexOf('?') > 0 ? '&' : '?' ) + params;
-			}
-
-			return url;
-		};
-
-	//Add helper object
-	F.helpers.media = {
-		defaults : {
-			youtube : {
-				matcher : /(youtube\.com|youtu\.be|youtube-nocookie\.com)\/(watch\?v=|v\/|u\/|embed\/?)?(videoseries\?list=(.*)|[\w-]{11}|\?listType=(.*)&list=(.*)).*/i,
-				params  : {
-					autoplay    : 1,
-					autohide    : 1,
-					fs          : 1,
-					rel         : 0,
-					hd          : 1,
-					wmode       : 'opaque',
-					enablejsapi : 1
-				},
-				type : 'iframe',
-				url  : '//www.youtube.com/embed/$3'
-			},
-			vimeo : {
-				matcher : /(?:vimeo(?:pro)?.com)\/(?:[^\d]+)?(\d+)(?:.*)/,
-				params  : {
-					autoplay      : 1,
-					hd            : 1,
-					show_title    : 1,
-					show_byline   : 1,
-					show_portrait : 0,
-					fullscreen    : 1
-				},
-				type : 'iframe',
-				url  : '//player.vimeo.com/video/$1'
-			},
-			metacafe : {
-				matcher : /metacafe.com\/(?:watch|fplayer)\/([\w\-]{1,10})/,
-				params  : {
-					autoPlay : 'yes'
-				},
-				type : 'swf',
-				url  : function( rez, params, obj ) {
-					obj.swf.flashVars = 'playerVars=' + $.param( params, true );
-
-					return '//www.metacafe.com/fplayer/' + rez[1] + '/.swf';
-				}
-			},
-			dailymotion : {
-				matcher : /dailymotion.com\/video\/(.*)\/?(.*)/,
-				params  : {
-					additionalInfos : 0,
-					autoStart : 1
-				},
-				type : 'swf',
-				url  : '//www.dailymotion.com/swf/video/$1'
-			},
-			twitvid : {
-				matcher : /twitvid\.com\/([a-zA-Z0-9_\-\?\=]+)/i,
-				params  : {
-					autoplay : 0
-				},
-				type : 'iframe',
-				url  : '//www.twitvid.com/embed.php?guid=$1'
-			},
-			twitpic : {
-				matcher : /twitpic\.com\/(?!(?:place|photos|events)\/)([a-zA-Z0-9\?\=\-]+)/i,
-				type : 'image',
-				url  : '//twitpic.com/show/full/$1/'
-			},
-			instagram : {
-				matcher : /(instagr\.am|instagram\.com)\/p\/([a-zA-Z0-9_\-]+)\/?/i,
-				type : 'image',
-				url  : '//$1/p/$2/media/?size=l'
-			},
-			google_maps : {
-				matcher : /maps\.google\.([a-z]{2,3}(\.[a-z]{2})?)\/(\?ll=|maps\?)(.*)/i,
-				type : 'iframe',
-				url  : function( rez ) {
-					return '//maps.google.' + rez[1] + '/' + rez[3] + '' + rez[4] + '&output=' + (rez[4].indexOf('layer=c') > 0 ? 'svembed' : 'embed');
-				}
-			}
-		},
-
-		beforeLoad : function(opts, obj) {
-			var url   = obj.href || '',
-				type  = false,
-				what,
-				item,
-				rez,
-				params;
-
-			for (what in opts) {
-				if (opts.hasOwnProperty(what)) {
-					item = opts[ what ];
-					rez  = url.match( item.matcher );
-
-					if (rez) {
-						type   = item.type;
-						params = $.extend(true, {}, item.params, obj[ what ] || ($.isPlainObject(opts[ what ]) ? opts[ what ].params : null));
-
-						url = $.type( item.url ) === "function" ? item.url.call( this, rez, params, obj ) : format( item.url, rez, params );
-
-						break;
-					}
-				}
-			}
-
-			if (type) {
-				obj.href = url;
-				obj.type = type;
-
-				obj.autoHeight = false;
-			}
-		}
-	};
-
-}(jQuery));
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://yoursite.com/2017/03/16/Christopherma2012.github.io/fancybox/helpers/jquery.fancybox-media/" data-id="cj0d3xlks000cokv1zd24ngc7" class="article-share-link">Share</a>
-      
-      
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-Christopherma2012.github.io/fancybox/helpers/jquery.fancybox-buttons" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2017/03/16/Christopherma2012.github.io/fancybox/helpers/jquery.fancybox-buttons/" class="article-date">
-  <time datetime="2017-03-16T08:33:06.629Z" itemprop="datePublished">2017-03-16</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        #fancybox-buttons {
+        #fancybox-thumbs {
 	position: fixed;
 	left: 0;
 	width: 100%;
+	overflow: hidden;
 	z-index: 8050;
 }
 
-#fancybox-buttons.top {
-	top: 10px;
+#fancybox-thumbs.bottom {
+	bottom: 2px;
 }
 
-#fancybox-buttons.bottom {
-	bottom: 10px;
+#fancybox-thumbs.top {
+	top: 2px;
 }
 
-#fancybox-buttons ul {
-	display: block;
-	width: 166px;
-	height: 30px;
-	margin: 0 auto;
-	padding: 0;
+#fancybox-thumbs ul {
+	position: relative;
 	list-style: none;
-	border: 1px solid #111;
-	border-radius: 3px;
-	-webkit-box-shadow: inset 0 0 0 1px rgba(255,255,255,.05);
-	   -moz-box-shadow: inset 0 0 0 1px rgba(255,255,255,.05);
-	        box-shadow: inset 0 0 0 1px rgba(255,255,255,.05);
-	background: rgb(50,50,50);
-	background: -moz-linear-gradient(top, rgb(68,68,68) 0%, rgb(52,52,52) 50%, rgb(41,41,41) 50%, rgb(51,51,51) 100%);
-	background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,rgb(68,68,68)), color-stop(50%,rgb(52,52,52)), color-stop(50%,rgb(41,41,41)), color-stop(100%,rgb(51,51,51)));
-	background: -webkit-linear-gradient(top, rgb(68,68,68) 0%,rgb(52,52,52) 50%,rgb(41,41,41) 50%,rgb(51,51,51) 100%);
-	background: -o-linear-gradient(top, rgb(68,68,68) 0%,rgb(52,52,52) 50%,rgb(41,41,41) 50%,rgb(51,51,51) 100%);
-	background: -ms-linear-gradient(top, rgb(68,68,68) 0%,rgb(52,52,52) 50%,rgb(41,41,41) 50%,rgb(51,51,51) 100%);
-	background: linear-gradient(top, rgb(68,68,68) 0%,rgb(52,52,52) 50%,rgb(41,41,41) 50%,rgb(51,51,51) 100%);
-	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#444444', endColorstr='#222222',GradientType=0 );
-}
-
-#fancybox-buttons ul li {
-	float: left;
 	margin: 0;
 	padding: 0;
 }
 
-#fancybox-buttons a {
-	display: block;
-	width: 30px;
-	height: 30px;
-	text-indent: -9999px;
-	background-color: transparent;
-	background-image: url('fancybox_buttons.png');
-	background-repeat: no-repeat;
-	outline: none;
-	opacity: 0.8;
+#fancybox-thumbs ul li {
+	float: left;
+	padding: 1px;
+	opacity: 0.5;
 }
 
-#fancybox-buttons a:hover {
+#fancybox-thumbs ul li.active {
+	opacity: 0.75;
+	padding: 0;
+	border: 1px solid #fff;
+}
+
+#fancybox-thumbs ul li:hover {
 	opacity: 1;
 }
 
-#fancybox-buttons a.btnPrev {
-	background-position: 5px 0;
+#fancybox-thumbs ul li a {
+	display: block;
+	position: relative;
+	overflow: hidden;
+	border: 1px solid #222;
+	background: #111;
+	outline: none;
 }
 
-#fancybox-buttons a.btnNext {
-	background-position: -33px 0;
-	border-right: 1px solid #3e3e3e;
-}
-
-#fancybox-buttons a.btnPlay {
-	background-position: 0 -30px;
-}
-
-#fancybox-buttons a.btnPlayOn {
-	background-position: -30px -30px;
-}
-
-#fancybox-buttons a.btnToggle {
-	background-position: 3px -60px;
-	border-left: 1px solid #111;
-	border-right: 1px solid #3e3e3e;
-	width: 35px
-}
-
-#fancybox-buttons a.btnToggleOn {
-	background-position: -27px -60px;
-}
-
-#fancybox-buttons a.btnClose {
-	border-left: 1px solid #111;
-	width: 35px;
-	background-position: -56px 0px;
-}
-
-#fancybox-buttons a.btnDisabled {
-	opacity : 0.4;
-	cursor: default;
+#fancybox-thumbs ul li img {
+	display: block;
+	position: relative;
+	border: 0;
+	padding: 0;
+	max-width: none;
 }
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2017/03/16/Christopherma2012.github.io/fancybox/helpers/jquery.fancybox-buttons/" data-id="cj0d3xlks000aokv14adsqz5e" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2017/03/16/Christopherma2012.github.io/fancybox/helpers/jquery.fancybox-thumbs/" data-id="cj0d4576s000dy4v1tfd6shh8" class="article-share-link">Share</a>
       
       
     </footer>
@@ -548,7 +282,129 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2017/03/16/Christopherma2012.github.io/fancybox/helpers/jquery.fancybox-buttons/" data-id="cj0d3xlks000dokv1mdjnr3xc" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2017/03/16/Christopherma2012.github.io/fancybox/helpers/jquery.fancybox-buttons/" data-id="cj0d4576d000by4v13fn15wkl" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-Christopherma2012.github.io/fancybox/helpers/jquery.fancybox-buttons" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2017/03/16/Christopherma2012.github.io/fancybox/helpers/jquery.fancybox-buttons/" class="article-date">
+  <time datetime="2017-03-16T08:33:06.629Z" itemprop="datePublished">2017-03-16</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        #fancybox-buttons {
+	position: fixed;
+	left: 0;
+	width: 100%;
+	z-index: 8050;
+}
+
+#fancybox-buttons.top {
+	top: 10px;
+}
+
+#fancybox-buttons.bottom {
+	bottom: 10px;
+}
+
+#fancybox-buttons ul {
+	display: block;
+	width: 166px;
+	height: 30px;
+	margin: 0 auto;
+	padding: 0;
+	list-style: none;
+	border: 1px solid #111;
+	border-radius: 3px;
+	-webkit-box-shadow: inset 0 0 0 1px rgba(255,255,255,.05);
+	   -moz-box-shadow: inset 0 0 0 1px rgba(255,255,255,.05);
+	        box-shadow: inset 0 0 0 1px rgba(255,255,255,.05);
+	background: rgb(50,50,50);
+	background: -moz-linear-gradient(top, rgb(68,68,68) 0%, rgb(52,52,52) 50%, rgb(41,41,41) 50%, rgb(51,51,51) 100%);
+	background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,rgb(68,68,68)), color-stop(50%,rgb(52,52,52)), color-stop(50%,rgb(41,41,41)), color-stop(100%,rgb(51,51,51)));
+	background: -webkit-linear-gradient(top, rgb(68,68,68) 0%,rgb(52,52,52) 50%,rgb(41,41,41) 50%,rgb(51,51,51) 100%);
+	background: -o-linear-gradient(top, rgb(68,68,68) 0%,rgb(52,52,52) 50%,rgb(41,41,41) 50%,rgb(51,51,51) 100%);
+	background: -ms-linear-gradient(top, rgb(68,68,68) 0%,rgb(52,52,52) 50%,rgb(41,41,41) 50%,rgb(51,51,51) 100%);
+	background: linear-gradient(top, rgb(68,68,68) 0%,rgb(52,52,52) 50%,rgb(41,41,41) 50%,rgb(51,51,51) 100%);
+	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#444444', endColorstr='#222222',GradientType=0 );
+}
+
+#fancybox-buttons ul li {
+	float: left;
+	margin: 0;
+	padding: 0;
+}
+
+#fancybox-buttons a {
+	display: block;
+	width: 30px;
+	height: 30px;
+	text-indent: -9999px;
+	background-color: transparent;
+	background-image: url('fancybox_buttons.png');
+	background-repeat: no-repeat;
+	outline: none;
+	opacity: 0.8;
+}
+
+#fancybox-buttons a:hover {
+	opacity: 1;
+}
+
+#fancybox-buttons a.btnPrev {
+	background-position: 5px 0;
+}
+
+#fancybox-buttons a.btnNext {
+	background-position: -33px 0;
+	border-right: 1px solid #3e3e3e;
+}
+
+#fancybox-buttons a.btnPlay {
+	background-position: 0 -30px;
+}
+
+#fancybox-buttons a.btnPlayOn {
+	background-position: -30px -30px;
+}
+
+#fancybox-buttons a.btnToggle {
+	background-position: 3px -60px;
+	border-left: 1px solid #111;
+	border-right: 1px solid #3e3e3e;
+	width: 35px
+}
+
+#fancybox-buttons a.btnToggleOn {
+	background-position: -27px -60px;
+}
+
+#fancybox-buttons a.btnClose {
+	border-left: 1px solid #111;
+	width: 35px;
+	background-position: -56px 0px;
+}
+
+#fancybox-buttons a.btnDisabled {
+	opacity : 0.4;
+	cursor: default;
+}
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2017/03/16/Christopherma2012.github.io/fancybox/helpers/jquery.fancybox-buttons/" data-id="cj0d4576d000ay4v10r2ji6rt" class="article-share-link">Share</a>
       
       
     </footer>
@@ -1957,354 +1813,7 @@ pre .javascript .function {
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2017/03/16/Christopherma2012.github.io/css/style/" data-id="cj0d3xljx0002okv16hew91s3" class="article-share-link">Share</a>
-      
-      
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-Christopherma2012.github.io/archives/2016/index" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2017/03/16/Christopherma2012.github.io/archives/2016/index/" class="article-date">
-  <time datetime="2017-03-16T08:33:06.551Z" itemprop="datePublished">2017-03-16</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <!DOCTYPE html>
-<html>
-<head>
-  <meta charset="utf-8">
-  
-  <title>Archives: 2016 | to Youth</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta property="og:type" content="website">
-<meta property="og:title" content="to Youth">
-<meta property="og:url" content="http://yoursite.com/archives/2016/index.html">
-<meta property="og:site_name" content="to Youth">
-<meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="to Youth">
-  
-    <link rel="alternate" href="/atom.xml" title="to Youth" type="application/atom+xml">
-  
-  
-    <link rel="icon" href="/favicon.ico">
-  
-  
-    <link href="//fonts.useso.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
-  
-  <link rel="stylesheet" href="/css/style.css">
-  
-
-</head>
-
-<body>
-  <div id="container">
-    <div id="wrap">
-      <header id="header">
-  <div id="banner"></div>
-  <div id="header-outer" class="outer">
-    <div id="header-title" class="inner">
-      <h1 id="logo-wrap">
-        <a href="/" id="logo">to Youth</a>
-      </h1>
-      
-        <h2 id="subtitle-wrap">
-          <a href="/" id="subtitle">细致生活，点滴记录</a>
-        </h2>
-      
-    </div>
-    <div id="header-inner" class="inner">
-      <nav id="main-nav">
-        <a id="main-nav-toggle" class="nav-icon"></a>
-        
-          <a class="main-nav-link" href="/">Home</a>
-        
-          <a class="main-nav-link" href="/archives">Archives</a>
-        
-          <a class="main-nav-link" href="mailto:christopherma2012@hotmail.com" target="_blank" rel="external">contact</a>
-        
-          <a class="main-nav-link" href="https://github.com/ChristopherMa2012" target="_blank" rel="external">github</a>
-        
-      </nav>
-      <nav id="sub-nav">
-        
-          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
-        
-        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
-      </nav>
-      <div id="search-form-wrap">
-        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" results="0" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://yoursite.com"></form>
-      </div>
-    </div>
-  </div>
-</header>
-      <div class="outer">
-        <section id="main">
-  
-  
-    
-    
-      
-      
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2016" class="archive-year">2016</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      <a href="/2016/07/31/ES6笔记之四‘Module’/" class="archive-article-date">
-  <time datetime="2016-07-31T10:10:08.000Z" itemprop="datePublished">Jul 31</time>
-</a>
-      
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2016/07/31/ES6笔记之四‘Module’/">ES6笔记之四‘Module’</a>
-    </h1>
-  
-
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      <a href="/2016/07/30/ES6笔记之三函数的扩展/" class="archive-article-date">
-  <time datetime="2016-07-30T00:51:43.000Z" itemprop="datePublished">Jul 30</time>
-</a>
-      
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2016/07/30/ES6笔记之三函数的扩展/">ES6笔记之三函数的扩展</a>
-    </h1>
-  
-
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      <a href="/2016/07/29/ES6笔记之一‘let与const命令’/" class="archive-article-date">
-  <time datetime="2016-07-29T03:08:31.000Z" itemprop="datePublished">Jul 29</time>
-</a>
-      
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2016/07/29/ES6笔记之一‘let与const命令’/">ES6笔记之一‘let与const命令’</a>
-    </h1>
-  
-
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      <a href="/2016/07/29/ES6笔记之二‘解构赋值’/" class="archive-article-date">
-  <time datetime="2016-07-29T03:07:13.000Z" itemprop="datePublished">Jul 29</time>
-</a>
-      
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2016/07/29/ES6笔记之二‘解构赋值’/">ES6笔记之二‘解构赋值’</a>
-    </h1>
-  
-
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      <a href="/2016/07/17/闭包与块作用域/" class="archive-article-date">
-  <time datetime="2016-07-17T02:15:17.000Z" itemprop="datePublished">Jul 17</time>
-</a>
-      
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2016/07/17/闭包与块作用域/">闭包与块作用域</a>
-    </h1>
-  
-
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      <a href="/2016/07/16/类的原型与继承/" class="archive-article-date">
-  <time datetime="2016-07-16T13:17:35.000Z" itemprop="datePublished">Jul 16</time>
-</a>
-      
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2016/07/16/类的原型与继承/">类的原型与继承</a>
-    </h1>
-  
-
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      <a href="/2016/07/16/hello-world/" class="archive-article-date">
-  <time datetime="2016-07-16T12:14:17.655Z" itemprop="datePublished">Jul 16</time>
-</a>
-      
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2016/07/16/hello-world/">Hello World</a>
-    </h1>
-  
-
-    </header>
-  </div>
-</article>
-  
-  
-    </div></section>
-  
-
-</section>
-        
-          <aside id="sidebar">
-  
-    
-
-  
-    
-  <div class="widget-wrap">
-    <h3 class="widget-title">Tags</h3>
-    <div class="widget">
-      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/ECMAScript6学习笔记/">ECMAScript6学习笔记</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/javascript/">javascript</a><span class="tag-list-count">2</span></li></ul>
-    </div>
-  </div>
-
-
-  
-    
-  <div class="widget-wrap">
-    <h3 class="widget-title">Tag Cloud</h3>
-    <div class="widget tagcloud">
-      <a href="/tags/ECMAScript6学习笔记/" style="font-size: 20px;">ECMAScript6学习笔记</a> <a href="/tags/javascript/" style="font-size: 10px;">javascript</a>
-    </div>
-  </div>
-
-  
-    
-  <div class="widget-wrap">
-    <h3 class="widget-title">Archives</h3>
-    <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/">2016</a><span class="archive-list-count">7</span></li></ul>
-    </div>
-  </div>
-
-
-  
-    
-  <div class="widget-wrap">
-    <h3 class="widget-title">Recent Posts</h3>
-    <div class="widget">
-      <ul>
-        
-          <li>
-            <a href="/2016/07/31/ES6笔记之四‘Module’/">ES6笔记之四‘Module’</a>
-          </li>
-        
-          <li>
-            <a href="/2016/07/30/ES6笔记之三函数的扩展/">ES6笔记之三函数的扩展</a>
-          </li>
-        
-          <li>
-            <a href="/2016/07/29/ES6笔记之一‘let与const命令’/">ES6笔记之一‘let与const命令’</a>
-          </li>
-        
-          <li>
-            <a href="/2016/07/29/ES6笔记之二‘解构赋值’/">ES6笔记之二‘解构赋值’</a>
-          </li>
-        
-          <li>
-            <a href="/2016/07/17/闭包与块作用域/">闭包与块作用域</a>
-          </li>
-        
-      </ul>
-    </div>
-  </div>
-
-  
-</aside>
-        
-      </div>
-      <footer id="footer">
-  
-  <div class="outer">
-    <div id="footer-info" class="inner">
-      &copy; 2016 Guixin Ma<br>
-      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
-    </div>
-  </div>
-</footer>
-    </div>
-    <nav id="mobile-nav">
-  
-    <a href="/" class="mobile-nav-link">Home</a>
-  
-    <a href="/archives" class="mobile-nav-link">Archives</a>
-  
-    <a href="mailto:christopherma2012@hotmail.com" class="mobile-nav-link" target="_blank" rel="external">contact</a>
-  
-    <a href="https://github.com/ChristopherMa2012" class="mobile-nav-link" target="_blank" rel="external">github</a>
-  
-</nav>
-    
-
-<script src="jquery-2.0.3.min.js"></script>
-
-
-  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
-  <script src="/fancybox/jquery.fancybox.pack.js"></script>
-
-
-<script src="/js/script.js"></script>
-
-  </div>
-</body>
-</html>
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://yoursite.com/2017/03/16/Christopherma2012.github.io/archives/2016/index/" data-id="cj0d3xlks000bokv1pasz800s" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2017/03/16/Christopherma2012.github.io/css/style/" data-id="cj0d4575h0003y4v104y1y11m" class="article-share-link">Share</a>
       
       
     </footer>
@@ -2651,7 +2160,354 @@ pre .javascript .function {
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2017/03/16/Christopherma2012.github.io/archives/index/" data-id="cj0d3xljx0003okv1b5r71su7" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2017/03/16/Christopherma2012.github.io/archives/index/" data-id="cj0d4575h0002y4v1hun5lr4j" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-Christopherma2012.github.io/archives/2016/index" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2017/03/16/Christopherma2012.github.io/archives/2016/index/" class="article-date">
+  <time datetime="2017-03-16T08:33:06.551Z" itemprop="datePublished">2017-03-16</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>Archives: 2016 | to Youth</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta property="og:type" content="website">
+<meta property="og:title" content="to Youth">
+<meta property="og:url" content="http://yoursite.com/archives/2016/index.html">
+<meta property="og:site_name" content="to Youth">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="to Youth">
+  
+    <link rel="alternate" href="/atom.xml" title="to Youth" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.ico">
+  
+  
+    <link href="//fonts.useso.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link rel="stylesheet" href="/css/style.css">
+  
+
+</head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">to Youth</a>
+      </h1>
+      
+        <h2 id="subtitle-wrap">
+          <a href="/" id="subtitle">细致生活，点滴记录</a>
+        </h2>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+          <a class="main-nav-link" href="mailto:christopherma2012@hotmail.com" target="_blank" rel="external">contact</a>
+        
+          <a class="main-nav-link" href="https://github.com/ChristopherMa2012" target="_blank" rel="external">github</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" results="0" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://yoursite.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main">
+  
+  
+    
+    
+      
+      
+      <section class="archives-wrap">
+        <div class="archive-year-wrap">
+          <a href="/archives/2016" class="archive-year">2016</a>
+        </div>
+        <div class="archives">
+    
+    <article class="archive-article archive-type-post">
+  <div class="archive-article-inner">
+    <header class="archive-article-header">
+      <a href="/2016/07/31/ES6笔记之四‘Module’/" class="archive-article-date">
+  <time datetime="2016-07-31T10:10:08.000Z" itemprop="datePublished">Jul 31</time>
+</a>
+      
+  
+    <h1 itemprop="name">
+      <a class="archive-article-title" href="/2016/07/31/ES6笔记之四‘Module’/">ES6笔记之四‘Module’</a>
+    </h1>
+  
+
+    </header>
+  </div>
+</article>
+  
+    
+    
+    <article class="archive-article archive-type-post">
+  <div class="archive-article-inner">
+    <header class="archive-article-header">
+      <a href="/2016/07/30/ES6笔记之三函数的扩展/" class="archive-article-date">
+  <time datetime="2016-07-30T00:51:43.000Z" itemprop="datePublished">Jul 30</time>
+</a>
+      
+  
+    <h1 itemprop="name">
+      <a class="archive-article-title" href="/2016/07/30/ES6笔记之三函数的扩展/">ES6笔记之三函数的扩展</a>
+    </h1>
+  
+
+    </header>
+  </div>
+</article>
+  
+    
+    
+    <article class="archive-article archive-type-post">
+  <div class="archive-article-inner">
+    <header class="archive-article-header">
+      <a href="/2016/07/29/ES6笔记之一‘let与const命令’/" class="archive-article-date">
+  <time datetime="2016-07-29T03:08:31.000Z" itemprop="datePublished">Jul 29</time>
+</a>
+      
+  
+    <h1 itemprop="name">
+      <a class="archive-article-title" href="/2016/07/29/ES6笔记之一‘let与const命令’/">ES6笔记之一‘let与const命令’</a>
+    </h1>
+  
+
+    </header>
+  </div>
+</article>
+  
+    
+    
+    <article class="archive-article archive-type-post">
+  <div class="archive-article-inner">
+    <header class="archive-article-header">
+      <a href="/2016/07/29/ES6笔记之二‘解构赋值’/" class="archive-article-date">
+  <time datetime="2016-07-29T03:07:13.000Z" itemprop="datePublished">Jul 29</time>
+</a>
+      
+  
+    <h1 itemprop="name">
+      <a class="archive-article-title" href="/2016/07/29/ES6笔记之二‘解构赋值’/">ES6笔记之二‘解构赋值’</a>
+    </h1>
+  
+
+    </header>
+  </div>
+</article>
+  
+    
+    
+    <article class="archive-article archive-type-post">
+  <div class="archive-article-inner">
+    <header class="archive-article-header">
+      <a href="/2016/07/17/闭包与块作用域/" class="archive-article-date">
+  <time datetime="2016-07-17T02:15:17.000Z" itemprop="datePublished">Jul 17</time>
+</a>
+      
+  
+    <h1 itemprop="name">
+      <a class="archive-article-title" href="/2016/07/17/闭包与块作用域/">闭包与块作用域</a>
+    </h1>
+  
+
+    </header>
+  </div>
+</article>
+  
+    
+    
+    <article class="archive-article archive-type-post">
+  <div class="archive-article-inner">
+    <header class="archive-article-header">
+      <a href="/2016/07/16/类的原型与继承/" class="archive-article-date">
+  <time datetime="2016-07-16T13:17:35.000Z" itemprop="datePublished">Jul 16</time>
+</a>
+      
+  
+    <h1 itemprop="name">
+      <a class="archive-article-title" href="/2016/07/16/类的原型与继承/">类的原型与继承</a>
+    </h1>
+  
+
+    </header>
+  </div>
+</article>
+  
+    
+    
+    <article class="archive-article archive-type-post">
+  <div class="archive-article-inner">
+    <header class="archive-article-header">
+      <a href="/2016/07/16/hello-world/" class="archive-article-date">
+  <time datetime="2016-07-16T12:14:17.655Z" itemprop="datePublished">Jul 16</time>
+</a>
+      
+  
+    <h1 itemprop="name">
+      <a class="archive-article-title" href="/2016/07/16/hello-world/">Hello World</a>
+    </h1>
+  
+
+    </header>
+  </div>
+</article>
+  
+  
+    </div></section>
+  
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tags</h3>
+    <div class="widget">
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/ECMAScript6学习笔记/">ECMAScript6学习笔记</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/javascript/">javascript</a><span class="tag-list-count">2</span></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/ECMAScript6学习笔记/" style="font-size: 20px;">ECMAScript6学习笔记</a> <a href="/tags/javascript/" style="font-size: 10px;">javascript</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/">2016</a><span class="archive-list-count">7</span></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2016/07/31/ES6笔记之四‘Module’/">ES6笔记之四‘Module’</a>
+          </li>
+        
+          <li>
+            <a href="/2016/07/30/ES6笔记之三函数的扩展/">ES6笔记之三函数的扩展</a>
+          </li>
+        
+          <li>
+            <a href="/2016/07/29/ES6笔记之一‘let与const命令’/">ES6笔记之一‘let与const命令’</a>
+          </li>
+        
+          <li>
+            <a href="/2016/07/29/ES6笔记之二‘解构赋值’/">ES6笔记之二‘解构赋值’</a>
+          </li>
+        
+          <li>
+            <a href="/2016/07/17/闭包与块作用域/">闭包与块作用域</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2016 Guixin Ma<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+    <a href="mailto:christopherma2012@hotmail.com" class="mobile-nav-link" target="_blank" rel="external">contact</a>
+  
+    <a href="https://github.com/ChristopherMa2012" class="mobile-nav-link" target="_blank" rel="external">github</a>
+  
+</nav>
+    
+
+<script src="jquery-2.0.3.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+
+  </div>
+</body>
+</html>
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2017/03/16/Christopherma2012.github.io/archives/2016/index/" data-id="cj0d4576d0009y4v19e6aj6hp" class="article-share-link">Share</a>
       
       
     </footer>
@@ -2998,7 +2854,7 @@ pre .javascript .function {
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2017/03/16/Christopherma2012.github.io/archives/2016/07/index/" data-id="cj0d3xll8000hokv1zn581dca" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2017/03/16/Christopherma2012.github.io/archives/2016/07/index/" data-id="cj0d4576s000hy4v1y3uw3dxy" class="article-share-link">Share</a>
       
       
     </footer>
@@ -3335,7 +3191,7 @@ obj.firstName
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2017/03/16/Christopherma2012.github.io/2016/07/31/ES6笔记之四‘Module’/index/" data-id="cj0d3xlln000nokv1vg0ut52b" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2017/03/16/Christopherma2012.github.io/2016/07/31/ES6笔记之四‘Module’/index/" data-id="cj0d45778000oy4v1fk5is1m4" class="article-share-link">Share</a>
       
       
     </footer>
@@ -3654,7 +3510,7 @@ bar([<span class="number">3</span>,<span class="number">45</span>])   <span clas
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2017/03/16/Christopherma2012.github.io/2016/07/30/ES6笔记之三函数的扩展/index/" data-id="cj0d3xlm3000ookv1lbd5tm6n" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2017/03/16/Christopherma2012.github.io/2016/07/30/ES6笔记之三函数的扩展/index/" data-id="cj0d45778000ny4v1epukflur" class="article-share-link">Share</a>
       
       
     </footer>
@@ -4048,7 +3904,7 @@ move()          <span class="comment">//[0,0]</span>
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2017/03/16/Christopherma2012.github.io/2016/07/29/ES6笔记之二‘解构赋值’/index/" data-id="cj0d3xlln000mokv1y3q89aq8" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2017/03/16/Christopherma2012.github.io/2016/07/29/ES6笔记之二‘解构赋值’/index/" data-id="cj0d45778000ly4v1407n6ozu" class="article-share-link">Share</a>
       
       
     </footer>
