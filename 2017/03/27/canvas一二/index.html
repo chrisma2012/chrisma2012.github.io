@@ -1,264 +1,253 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <meta charset="utf-8">
-  
-  <title>canvas一二 | to Youth</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="最近在写一个刮刮乐的抽奖功能,总结起来主要的点有三个：
-1. canvas的宽高设置这个是一个很奇怪的点，canvas的宽高必须是作为&amp;lt;canvas&amp;gt;标签的属性存在,才会对
-之后js获取其宽高计算坐标点有效，否则按直接在样式里面写的宽高计算出来的坐
-标是不正确的。 
-关于这个问题，后来在MDN的&amp;lt;https://developer.mozilla.org/en-US/docs">
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+
+    
+
+    <title>
+      canvas一二 | to Youth 
+    </title>
+
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    
+      <meta name="author" content="Ma">
+    
+    
+
+    <meta name="description" content="最近在写一个刮刮乐的抽奖功能,总结起来主要的点有三个：
+1. canvas的宽高设置这个是一个很奇怪的点，canvas的宽高必须是作为标签的属性存在,才会对之后js获取其宽高计算坐标点有效，否则按直接在样式里面写的宽高计算出来的坐标是不正确的。关于这个问题，后来在MDN的https://developer.mozilla.org/en-US/docs/Web/HTML/Element/canvas">
 <meta property="og:type" content="article">
-<meta property="og:title" content="canvas一二">
+<meta property="og:title" content="canvas一二 | to Youth">
 <meta property="og:url" content="http://yoursite.com/2017/03/27/canvas一二/index.html">
 <meta property="og:site_name" content="to Youth">
 <meta property="og:description" content="最近在写一个刮刮乐的抽奖功能,总结起来主要的点有三个：
-1. canvas的宽高设置这个是一个很奇怪的点，canvas的宽高必须是作为&amp;lt;canvas&amp;gt;标签的属性存在,才会对
-之后js获取其宽高计算坐标点有效，否则按直接在样式里面写的宽高计算出来的坐
-标是不正确的。 
-关于这个问题，后来在MDN的&amp;lt;https://developer.mozilla.org/en-US/docs">
-<meta property="og:updated_time" content="2017-03-27T01:03:06.191Z">
+1. canvas的宽高设置这个是一个很奇怪的点，canvas的宽高必须是作为标签的属性存在,才会对之后js获取其宽高计算坐标点有效，否则按直接在样式里面写的宽高计算出来的坐标是不正确的。关于这个问题，后来在MDN的https://developer.mozilla.org/en-US/docs/Web/HTML/Element/canvas">
+<meta property="og:updated_time" content="2017-03-29T01:05:30.805Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="canvas一二">
+<meta name="twitter:title" content="canvas一二 | to Youth">
 <meta name="twitter:description" content="最近在写一个刮刮乐的抽奖功能,总结起来主要的点有三个：
-1. canvas的宽高设置这个是一个很奇怪的点，canvas的宽高必须是作为&amp;lt;canvas&amp;gt;标签的属性存在,才会对
-之后js获取其宽高计算坐标点有效，否则按直接在样式里面写的宽高计算出来的坐
-标是不正确的。 
-关于这个问题，后来在MDN的&amp;lt;https://developer.mozilla.org/en-US/docs">
-  
-    <link rel="alternate" href="/atom.xml" title="to Youth" type="application/atom+xml">
-  
-  
-    <link rel="icon" href="/favicon.png">
-  
-  
-    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
-  
-  <link rel="stylesheet" href="/css/style.css">
-  
+1. canvas的宽高设置这个是一个很奇怪的点，canvas的宽高必须是作为标签的属性存在,才会对之后js获取其宽高计算坐标点有效，否则按直接在样式里面写的宽高计算出来的坐标是不正确的。关于这个问题，后来在MDN的https://developer.mozilla.org/en-US/docs/Web/HTML/Element/canvas">
+    
+    
+    
+      <link rel="icon" type="image/x-icon" href="/favicon.png">
+    
+    <link rel="stylesheet" href="/css/uno.css">
+    <link rel="stylesheet" href="/css/highlight.css">
+    <link rel="stylesheet" href="/css/archive.css">
+    <link rel="stylesheet" href="/css/china-social-icon.css">
 
 </head>
-
 <body>
-  <div id="container">
-    <div id="wrap">
-      <header id="header">
-  <div id="banner"></div>
-  <div id="header-outer" class="outer">
-    <div id="header-title" class="inner">
-      <h1 id="logo-wrap">
-        <a href="/" id="logo">to Youth</a>
-      </h1>
-      
-        <h2 id="subtitle-wrap">
-          <a href="/" id="subtitle">细致生活，点滴记录</a>
-        </h2>
-      
-    </div>
-    <div id="header-inner" class="inner">
-      <nav id="main-nav">
-        <a id="main-nav-toggle" class="nav-icon"></a>
+
+    <span class="mobile btn-mobile-menu">
+        <i class="icon icon-list btn-mobile-menu__icon"></i>
+        <i class="icon icon-x-circle btn-mobile-close__icon hidden"></i>
+    </span>
+
+    
+
+<header class="panel-cover panel-cover--collapsed">
+
+
+  <div class="panel-main">
+
+  
+    <div class="panel-main__inner panel-inverted">
+    <div class="panel-main__content">
+
         
-          <a class="main-nav-link" href="/">Home</a>
+
+        <h1 class="panel-cover__title panel-title"><a href="/" title="link to homepage">to Youth</a></h1>
+        <hr class="panel-cover__divider" />
+
         
-          <a class="main-nav-link" href="/archives">Archives</a>
+        <p class="panel-cover__description">
+          细致生活，点滴记录
+        </p>
+        <hr class="panel-cover__divider panel-cover__divider--secondary" />
         
-      </nav>
-      <nav id="sub-nav">
-        
-          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
-        
-        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
-      </nav>
-      <div id="search-form-wrap">
-        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" results="0" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://yoursite.com"></form>
+
+        <div class="navigation-wrapper">
+
+          <nav class="cover-navigation cover-navigation--primary">
+            <ul class="navigation">
+
+              
+                
+                <li class="navigation__item"><a href="/#blog" title="" class="blog-button">首页</a></li>
+              
+                
+                <li class="navigation__item"><a href="/about" title="" class="">关于</a></li>
+              
+                
+                <li class="navigation__item"><a href="/archive" title="" class="">归档</a></li>
+              
+
+            </ul>
+          </nav>
+
+          <!-- ----------------------------
+To add a new social icon simply duplicate one of the list items from below
+and change the class in the <i> tag to match the desired social network
+and then add your link to the <a>. Here is a full list of social network
+classes that you can use:
+
+    icon-social-500px
+    icon-social-behance
+    icon-social-delicious
+    icon-social-designer-news
+    icon-social-deviant-art
+    icon-social-digg
+    icon-social-dribbble
+    icon-social-facebook
+    icon-social-flickr
+    icon-social-forrst
+    icon-social-foursquare
+    icon-social-github
+    icon-social-google-plus
+    icon-social-hi5
+    icon-social-instagram
+    icon-social-lastfm
+    icon-social-linkedin
+    icon-social-medium
+    icon-social-myspace
+    icon-social-path
+    icon-social-pinterest
+    icon-social-rdio
+    icon-social-reddit
+    icon-social-skype
+    icon-social-spotify
+    icon-social-stack-overflow
+    icon-social-steam
+    icon-social-stumbleupon
+    icon-social-treehouse
+    icon-social-tumblr
+    icon-social-twitter
+    icon-social-vimeo
+    icon-social-xbox
+    icon-social-yelp
+    icon-social-youtube
+    icon-social-zerply
+    icon-mail
+
+-------------------------------->
+
+<!-- add social info here -->
+
+
+
+        </div>
+
       </div>
+
     </div>
+
+    <div class="panel-cover--overlay"></div>
   </div>
 </header>
-      <div class="outer">
-        <section id="main"><article id="post-canvas一二" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2017/03/27/canvas一二/" class="article-date">
-  <time datetime="2017-03-27T01:02:19.000Z" itemprop="datePublished">2017-03-27</time>
-</a>
+
+    <div class="content-wrapper">
+        <div class="content-wrapper__inner entry">
+            
+
+<article class="post-container post-container--single">
+
+  <header class="post-header">
     
-  </div>
-  <div class="article-inner">
+    <h1 class="post-title">canvas一二</h1>
+
     
-    
-      <header class="article-header">
-        
-  
-    <h1 class="article-title" itemprop="name">
-      canvas一二
-    </h1>
-  
 
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>  最近在写一个刮刮乐的抽奖功能,总结起来主要的点有三个：</p>
-<h3 id="1-canvas的宽高设置"><a href="#1-canvas的宽高设置" class="headerlink" title="1. canvas的宽高设置"></a>1. canvas的宽高设置</h3><pre><code>这个是一个很奇怪的点，canvas的宽高必须是作为&lt;canvas&gt;标签的属性存在,才会对
-之后js获取其宽高计算坐标点有效，否则按直接在样式里面写的宽高计算出来的坐
-标是不正确的。 
-关于这个问题，后来在MDN的&lt;https://developer.mozilla.org/en-US/docs/Web/HTML/Element/canvas&gt;上找到了解释。  
-```javascript  
-&gt;
-Attributes
-This element&apos;s attributes include the global attributes.
-height
-The height of the coordinate space in CSS pixels. Defaults to 150.
-moz-opaque 
-Lets the canvas know whether or not translucency will be a factor. If the canvas knows there&apos;s no translucency, painting performance can be optimized.
-width
-The width of the coordinate space in CSS pixels. Defaults to 300.  
-### Usage notes 
-Alternative content
+    <div class="post-meta">
+      <time datetime="2017-03-27" class="post-meta__date date">2017-03-27</time> 
 
-  You may (and should) provide alternate content inside the &lt;canvas&gt; block. That content will be rendered both on older browsers that don&apos;t support canvas and in browsers with JavaScript disabled.
+      <span class="post-meta__tags tags">
 
-  Required &lt;/canvas&gt; tag
+          
 
-  Unlike the &lt;img&gt; element, the &lt;canvas&gt; element requires the closing tag (&lt;/canvas&gt;).
+          
+             &#8226; 标签:
+            <font class="tags">
+              <a class="tags-link" href="/tags/javascript/">javascript</a>
+            </font>
+          
 
-  Sizing the canvas
-
-  The displayed size of the canvas can be changed using a stylesheet. The image is scaled during rendering to fit the styled size. If your renderings seem distorted, try specifying your width and height attributes explicitly in the &lt;canvas&gt; attributes, and not using CSS.
-</code></pre>
-      
+      </span>
     </div>
-    <footer class="article-footer">
-      <a data-url="http://yoursite.com/2017/03/27/canvas一二/" data-id="cj0rie14c0003nsv10uhjzsks" class="article-share-link">Share</a>
-      
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/javascript/">javascript</a></li></ul>
-
-    </footer>
-  </div>
-  
     
-<nav id="article-nav">
-  
-  
-    <a href="/2017/03/22/canvas/" id="article-nav-older" class="article-nav-link-wrap">
-      <strong class="article-nav-caption">Older</strong>
-      <div class="article-nav-title"></div>
-    </a>
-  
-</nav>
+    
 
+  </header>
+
+  <section id="post-content" class="article-content post">
+    <p>最近在写一个刮刮乐的抽奖功能,总结起来主要的点有三个：</p>
+<h3 id="1-canvas的宽高设置"><a href="#1-canvas的宽高设置" class="headerlink" title="1. canvas的宽高设置"></a>1. canvas的宽高设置</h3><p>这个是一个很奇怪的点，canvas的宽高必须是作为标签的属性存在,才会对之后js获取其宽高计算坐标点有效，否则按直接在样式里面写的宽高计算出来的坐标是不正确的。<br>关于这个问题，后来在MDN的<a href="https://developer.mozilla.org/en-US/docs/Web/HTML/Element/canvas" target="_blank" rel="external">https://developer.mozilla.org/en-US/docs/Web/HTML/Element/canvas</a>上找到了解释。</p>
+<h4 id="Attributes"><a href="#Attributes" class="headerlink" title="Attributes"></a><em>Attributes</em></h4><p>This element’s attributes include the global attributes. </p>
+<h5 id="height"><a href="#height" class="headerlink" title="height"></a><em>height</em></h5><p>The height of the coordinate space in CSS pixels. Defaults to 150.</p>
+<h5 id="moz-opaque"><a href="#moz-opaque" class="headerlink" title="moz-opaque"></a><em>moz-opaque</em></h5><p>Lets the canvas know whether or not translucency will be a factor. If the canvas knows there’s no translucency, painting performance can be optimized.</p>
+<h5 id="width"><a href="#width" class="headerlink" title="width"></a><em>width</em></h5><p>The width of the coordinate space in CSS pixels. Defaults to 300.  </p>
+<h4 id="Usage-notes"><a href="#Usage-notes" class="headerlink" title="Usage notes"></a><em>Usage notes</em></h4><h5 id="Alternative-content"><a href="#Alternative-content" class="headerlink" title="Alternative content"></a><em>Alternative content</em></h5><p>You may (and should) provide alternate content inside the canvas block. That content will be rendered both on older browsers that don not support canvas and in browsers with JavaScript disabled.</p>
+<h5 id="Required-canvas-close-tag"><a href="#Required-canvas-close-tag" class="headerlink" title="Required canvas close tag"></a><em>Required canvas close tag</em></h5><p>Unlike the img element, the canvas element requires the closing tag.</p>
+<h5 id="Sizing-the-canvas"><a href="#Sizing-the-canvas" class="headerlink" title="Sizing the canvas"></a><em>Sizing the canvas</em></h5><p>The displayed size of the canvas can be changed using a stylesheet. The image is scaled during rendering to fit the styled size. If your renderings seem distorted, try specifying your width and height attributes explicitly in the canvas attributes, and not using CSS.    </p>
+<p>在最后sizing the cancas说到，canvas在渲染的时候会进行缩放以适应样式内写好的宽高。所以如果出现渲染扭曲本意的时候，应该在canvas标签内，以属性的形式直接指定宽高。  </p>
+<h3 id="2-globalCompositeOperation"><a href="#2-globalCompositeOperation" class="headerlink" title="2. globalCompositeOperation"></a>2. <a href="https://developer.mozilla.org/en-US/docs/Web/API/CanvasRenderingContext2D/globalCompositeOperation" target="_blank" rel="external">globalCompositeOperation</a></h3><p>Canvas 2D接口。使用语法：ctx.globalCompositeOperation = type (type为string类型)。其作用是，在绘制新图形的时候规定采用种混合操作。其值有：  </p>
+<p>1、 source-over: 新图形覆盖在旧的图形上方<br>2、 source-in:   新图形只有和旧图形重叠的部分才会绘制<br>3、 source-out:  新图形只有和旧图形不重叠的部分才会绘制<br>4、 source-atop: 新图形只有和旧图形重叠的部分才会绘制，并且新图形的透明度会跟随旧图形<br>5、 destination-over: 新图形绘制在旧图形的下方<br>6、 destination-in:   只有和新图形重叠的部分才会显示，并且透明度跟随旧图形<br>7、 destination-out:  只有新图形和旧图形不重叠的部分才会显示<br>8、 destination-atop: 旧图形只有和新图形重叠的部分才会显示，并且新图形在旧图形下方<br>9、 lighter:<br>10、copy: 只显示新图形<br>11、xor:<br>12、multiply:<br>13、screen:<br>14、overlay:<br>15、darken:<br>16、lighten:<br>17、color-dodge:<br>18、hard-light:<br>19、soft-light:<br>20、difference:<br>21、exclusion:<br>22、hue:<br>23、saturation:<br>24、color:<br>25、luminosity：</p>
+
+  </section>
+
+  
   
 </article>
 
-</section>
-        
-          <aside id="sidebar">
-  
+
+            <footer class="footer">
+
+    <span class="footer__copyright">&copy; 2016-2017. |  <a href="https://github.com/ChristopherMa2012">christopherma2012</a> | 主题<a href="https://github.com/someus/huno">Huno</a></span>
     
-  <div class="widget-wrap">
-    <h3 class="widget-title">Categories</h3>
-    <div class="widget">
-      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/javascript/">javascript</a></li></ul>
-    </div>
-  </div>
-
-
-  
-    
-  <div class="widget-wrap">
-    <h3 class="widget-title">Tags</h3>
-    <div class="widget">
-      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/javascript/">javascript</a></li></ul>
-    </div>
-  </div>
-
-
-  
-    
-  <div class="widget-wrap">
-    <h3 class="widget-title">Tag Cloud</h3>
-    <div class="widget tagcloud">
-      <a href="/tags/javascript/" style="font-size: 10px;">javascript</a>
-    </div>
-  </div>
-
-  
-    
-  <div class="widget-wrap">
-    <h3 class="widget-title">Archives</h3>
-    <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/03/">March 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/07/">July 2016</a></li></ul>
-    </div>
-  </div>
-
-
-  
-    
-  <div class="widget-wrap">
-    <h3 class="widget-title">Recent Posts</h3>
-    <div class="widget">
-      <ul>
-        
-          <li>
-            <a href="/2017/03/27/canvas一二/">canvas一二</a>
-          </li>
-        
-          <li>
-            <a href="/2017/03/22/canvas/">(no title)</a>
-          </li>
-        
-          <li>
-            <a href="/2017/03/21/about/">about</a>
-          </li>
-        
-          <li>
-            <a href="/2017/03/16/hello-world/">Hello World</a>
-          </li>
-        
-          <li>
-            <a href="/2016/07/16/javascript/">javascript</a>
-          </li>
-        
-      </ul>
-    </div>
-  </div>
-
-  
-</aside>
-        
-      </div>
-      <footer id="footer">
-  
-  <div class="outer">
-    <div id="footer-info" class="inner">
-      &copy; 2017 Ma<br>
-      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
-    </div>
-  </div>
 </footer>
+        </div>
     </div>
-    <nav id="mobile-nav">
-  
-    <a href="/" class="mobile-nav-link">Home</a>
-  
-    <a href="/archives" class="mobile-nav-link">Archives</a>
-  
-</nav>
+
+    <!-- js files -->
+    <script src="/js/jquery.min.js"></script>
+    <script src="/js/main.js"></script>
+    <script src="/js/scale.fix.js"></script>
     
 
-<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+    
+
+    <script type="text/javascript" src="//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script type="text/javascript"> 
+        $(document).ready(function(){
+            MathJax.Hub.Config({ 
+                tex2jax: {inlineMath: [['[latex]','[/latex]'], ['\\(','\\)']]} 
+            });
+        });
+    </script>
 
 
-  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
-  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+    
+
+    <script src="/js/awesome-toc.min.js"></script>
+    <script>
+        $(document).ready(function(){
+            $.awesome_toc({
+                overlay: true,
+                contentId: "post-content",
+            });
+        });
+    </script>
 
 
-<script src="/js/script.js"></script>
+    
+    
+    <!--kill ie6 -->
+<!--[if IE 6]>
+  <script src="//letskillie6.googlecode.com/svn/trunk/2/zh_CN.js"></script>
+<![endif]-->
 
-  </div>
 </body>
 </html>
