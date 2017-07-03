@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+
+    
+
+    <title>
+      canvas实现头像裁剪 | to Youth 
+    </title>
+
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    
+      <meta name="author" content="Ma">
+    
+    
+
+    <meta name="description" content="公司的项目中有一个需求，就是用户可以自主选择、裁剪自己的账号头像。本着自己能完成的事情就不麻烦别人的原则，再结合前端也可以使用canvas来实现图片的操作，故有了下面的尝试,同时总结记录几个要点。  
+一、因为canvas的getContext() 的是原生DOM对象才有的方法，所以使用JQ的时候要注意将对象转化为原生js对象。  
+二、canvas在IE10上存在安全限制123456789101">
+<meta property="og:type" content="article">
+<meta property="og:title" content="canvas实现头像裁剪 | to Youth">
+<meta property="og:url" content="http://yoursite.com/2017/06/28/canvas实现头像裁剪/index.html">
+<meta property="og:site_name" content="to Youth">
+<meta property="og:description" content="公司的项目中有一个需求，就是用户可以自主选择、裁剪自己的账号头像。本着自己能完成的事情就不麻烦别人的原则，再结合前端也可以使用canvas来实现图片的操作，故有了下面的尝试,同时总结记录几个要点。  
+一、因为canvas的getContext() 的是原生DOM对象才有的方法，所以使用JQ的时候要注意将对象转化为原生js对象。  
+二、canvas在IE10上存在安全限制123456789101">
+<meta property="og:updated_time" content="2017-07-03T01:23:04.353Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="canvas实现头像裁剪 | to Youth">
+<meta name="twitter:description" content="公司的项目中有一个需求，就是用户可以自主选择、裁剪自己的账号头像。本着自己能完成的事情就不麻烦别人的原则，再结合前端也可以使用canvas来实现图片的操作，故有了下面的尝试,同时总结记录几个要点。  
+一、因为canvas的getContext() 的是原生DOM对象才有的方法，所以使用JQ的时候要注意将对象转化为原生js对象。  
+二、canvas在IE10上存在安全限制123456789101">
+    
+    
+      <link rel="alternate" href="/atom.xml" title="to Youth" type="application/atom+xml">
+    
+    
+      <link rel="icon" type="image/x-icon" href="/favicon.png">
+    
+    <link rel="stylesheet" href="/css/uno.css">
+    <link rel="stylesheet" href="/css/highlight.css">
+    <link rel="stylesheet" href="/css/archive.css">
+    <link rel="stylesheet" href="/css/china-social-icon.css">
+
+</head>
+<body>
+
+    <span class="mobile btn-mobile-menu">
+        <i class="icon icon-list btn-mobile-menu__icon"></i>
+        <i class="icon icon-x-circle btn-mobile-close__icon hidden"></i>
+    </span>
+
+    
+
+<header class="panel-cover panel-cover--collapsed">
+
+
+  <div class="panel-main">
+
+  
+    <div class="panel-main__inner panel-inverted">
+    <div class="panel-main__content">
+
+        
+
+        <h1 class="panel-cover__title panel-title"><a href="/" title="link to homepage">to Youth</a></h1>
+        <hr class="panel-cover__divider" />
+
+        
+        <p class="panel-cover__description">
+          细致生活，点滴记录
+        </p>
+        <hr class="panel-cover__divider panel-cover__divider--secondary" />
+        
+
+        <div class="navigation-wrapper">
+
+          <nav class="cover-navigation cover-navigation--primary">
+            <ul class="navigation">
+
+              
+                
+                <li class="navigation__item"><a href="/#blog" title="" class="blog-button">首页</a></li>
+              
+                
+                <li class="navigation__item"><a href="/about" title="" class="">关于</a></li>
+              
+                
+                <li class="navigation__item"><a href="/archive" title="" class="">归档</a></li>
+              
+
+            </ul>
+          </nav>
+
+          <!-- ----------------------------
+To add a new social icon simply duplicate one of the list items from below
+and change the class in the <i> tag to match the desired social network
+and then add your link to the <a>. Here is a full list of social network
+classes that you can use:
+
+    icon-social-500px
+    icon-social-behance
+    icon-social-delicious
+    icon-social-designer-news
+    icon-social-deviant-art
+    icon-social-digg
+    icon-social-dribbble
+    icon-social-facebook
+    icon-social-flickr
+    icon-social-forrst
+    icon-social-foursquare
+    icon-social-github
+    icon-social-google-plus
+    icon-social-hi5
+    icon-social-instagram
+    icon-social-lastfm
+    icon-social-linkedin
+    icon-social-medium
+    icon-social-myspace
+    icon-social-path
+    icon-social-pinterest
+    icon-social-rdio
+    icon-social-reddit
+    icon-social-skype
+    icon-social-spotify
+    icon-social-stack-overflow
+    icon-social-steam
+    icon-social-stumbleupon
+    icon-social-treehouse
+    icon-social-tumblr
+    icon-social-twitter
+    icon-social-vimeo
+    icon-social-xbox
+    icon-social-yelp
+    icon-social-youtube
+    icon-social-zerply
+    icon-mail
+
+-------------------------------->
+
+<!-- add social info here -->
+
+
+
+        </div>
+
+      </div>
+
+    </div>
+
+    <div class="panel-cover--overlay"></div>
+  </div>
+</header>
+
+    <div class="content-wrapper">
+        <div class="content-wrapper__inner entry">
+            
+
+<article class="post-container post-container--single">
+
+  <header class="post-header">
+    
+    <h1 class="post-title">canvas实现头像裁剪</h1>
+
+    
+
+    <div class="post-meta">
+      <time datetime="2017-06-28" class="post-meta__date date">2017-06-28</time> 
+
+      <span class="post-meta__tags tags">
+
+          
+
+          
+             &#8226; 标签:
+            <font class="tags">
+              <a class="tags-link" href="/tags/javascript-canvas/">javascript canvas</a>
+            </font>
+          
+
+      </span>
+    </div>
+    
+    
+
+  </header>
+
+  <section id="post-content" class="article-content post">
+    <p>公司的项目中有一个需求，就是用户可以自主选择、裁剪自己的账号头像。本着自己能完成的事情就不麻烦别人的原则，再结合前端也可以使用canvas来实现图片的操作，故有了下面的尝试,同时总结记录几个要点。  </p>
+<p>一、因为canvas的getContext() 的是原生DOM对象才有的方法，所以使用JQ的时候要注意将对象转化为原生js对象。  </p>
+<p>二、canvas在IE10上存在安全限制<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line"><span class="comment">//处理IE10安全限制</span></div><div class="line"><span class="keyword">if</span> (navigator.userAgent.indexOf(<span class="string">"MSIE"</span>) &gt; <span class="number">-1</span>) &#123;</div><div class="line">    <span class="keyword">var</span> xhr = <span class="keyword">new</span> XMLHttpRequest();</div><div class="line">    xhr.onload = <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</div><div class="line">        <span class="keyword">var</span> url = URL.createObjectURL(<span class="keyword">this</span>.response);</div><div class="line">        $(<span class="string">"#imgChange"</span>).attr(<span class="string">"src"</span>, url);</div><div class="line">        URL.revokeObjectURL(url);</div><div class="line">    &#125;;</div><div class="line">    xhr.open(<span class="string">"GET"</span>, $(<span class="string">"#headImg"</span>).attr(<span class="string">"src"</span>), <span class="literal">true</span>);</div><div class="line">    xhr.responseType = <span class="string">'blob'</span>;</div><div class="line">    xhr.send();</div><div class="line">&#125; <span class="keyword">else</span> &#123;</div><div class="line">    $(<span class="string">"#imgChange"</span>).attr(<span class="string">"src"</span>, $(<span class="string">"#headImg"</span>).attr(<span class="string">"src"</span>));</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>除此之外，在google浏览器上使用canvas还存在图片跨域的问题。谷歌浏览器不允许使用与当前页domain不一致的图片。而在公司的项目里，www.xiaohuangdou.com和图片服务器1.img.xiaohuangdou.com是不同的两个域。因此要使用canvas还必须在图片服务器的配置里加上响应头：Access-Control-Allow-Origin:<a href="http://www.xiaohuangdou.com。" target="_blank" rel="external">http://www.xiaohuangdou.com。</a>  </p>
+<p>主要的技术点举例完后，如何实现QQ头像那样的图片裁剪功能呢？<br>首先QQ的截取面板是由一个中间为透明无色正方形，而其他区域透明但灰暗的遮罩层和底部的一张图片组成。拖动中间的那个透明无色正方形，可以选取我们想要裁剪的区域。<br>其次在拖动的同时，在旁边的预览窗口能够实时的显示当前透明无色正方形选取的区域。<br>最后，用户在确定自己想要截取的区域后，按下确认键，便能将选中的区域当作一张新的图片传送的后台存储。  </p>
+<p> 由此，我们可以从上面的要点找到对应的解决方法以及需要的注意的细节处理。<br>第一步，先处理截取面板。直观的看，截取面板有三部分：无色透明正方形、暗色透明区域和底部图片。因为通过 var ctx = canvas.getContext(“2d”) ( 为了便于描述，以下均已ctx代替 canvas.getContext(“2d”)对象 ) 的 globalAlpha 属性来设置 图形的透明度，所以无色透明<br>和暗色透明的区域都有了解决办法。但是使用三个canvas实现这三个部分显得有点不符合实际，毕竟如果透明正方形和暗色透明区域用不同的canvas实现的话，是没有办法实现像QQ那种拖动无色透明正方形的同时，暗色透明区域会自动填补无色透明正方形移动的空间的。<br>恰好ctx对象还有一个 globalCompositeOperation 属性。globalCompositeOperation 属性设<br>置要在同一个canvas面板绘制新形状时应用的合成操作的类型，用大白话说就是，在一个canvas面<br>板上，下一步绘制的图形是如何协调在上一步绘制的图形的位置关系的。通过这个属性，我们可以将<br>无色透明正方形、暗色透明区域都集合在一个canvas面板上，节省了一个canvas标签。<br>然而下一个难点却是，怎样使得拖动无色透明正方形的时候，暗色透明区域自动会填补前者留下的空白呢？因为暗色透明区域一旦绘制完成之后就不会再有变动了，所以即使我们后续能够拖动无色透明区域，但暗色透明区域却不会自动填补。为了解决这个问题，只能在触发拖动事件的同时，时刻<br>重绘暗色透明区域了。也就是<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div></pre></td><td class="code"><pre><div class="line">$(mskCanvas).on(<span class="string">"mousemove"</span>, <span class="function"><span class="keyword">function</span>(<span class="params">e</span>) </span>&#123;</div><div class="line">    <span class="keyword">if</span> (isDrag) &#123;</div><div class="line">        moveDisX = e.pageX - mouseStartX;</div><div class="line">        moveDisY = e.pageY - mouseStartY;</div><div class="line">        mskCtx.globalAlpha = <span class="number">0.8</span>;</div><div class="line">        mskCtx.globalCompositeOperation = <span class="string">'copy'</span>;</div><div class="line">        mskCtx.fillRect(<span class="number">0</span>, <span class="number">0</span>, <span class="number">300</span>, <span class="number">300</span>);</div><div class="line">        mskCtx.globalCompositeOperation = <span class="string">'xor'</span>;</div><div class="line">        mskCtx.globalAlpha = <span class="number">1</span>;</div><div class="line">        temX = (selectRectX + moveDisX &gt; newWidth - <span class="number">150</span> ? newWidth - <span class="number">150</span> : selectRectX + moveDisX &lt; <span class="number">0</span> ? <span class="number">0</span> : selectRectX + moveDisX);</div><div class="line">        temY = (selectRectY + moveDisY &gt; newHeight - <span class="number">150</span> ? newHeight - <span class="number">150</span> : selectRectY + moveDisY &lt; <span class="number">0</span> ? <span class="number">0</span> : selectRectY + moveDisY);</div><div class="line">        mskCtx.fillRect(temX, temY, <span class="number">150</span>, <span class="number">150</span>);</div><div class="line"></div><div class="line">        <span class="keyword">var</span> newImageData = temCtx.getImageData(temX, temY, <span class="number">150</span>, <span class="number">150</span>);</div><div class="line">        preViewCtx.putImageData(newImageData, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">300</span>, <span class="number">300</span>);</div><div class="line">    &#125;</div><div class="line">&#125;);</div></pre></td></tr></table></figure></p>
+
+  </section>
+
+  
+  
+</article>
+
+
+            <footer class="footer">
+
+    <span class="footer__copyright">&copy; 2016-2017. |  <a href="https://github.com/ChristopherMa2012">christopherma2012</a> | 主题<a href="https://github.com/someus/huno">Huno</a></span>
+    
+</footer>
+        </div>
+    </div>
+
+    <!-- js files -->
+    <script src="/js/jquery.min.js"></script>
+    <script src="/js/main.js"></script>
+    <script src="/js/scale.fix.js"></script>
+    
+
+    
+
+    <script type="text/javascript" src="//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script type="text/javascript"> 
+        $(document).ready(function(){
+            MathJax.Hub.Config({ 
+                tex2jax: {inlineMath: [['[latex]','[/latex]'], ['\\(','\\)']]} 
+            });
+        });
+    </script>
+
+
+    
+
+    <script src="/js/awesome-toc.min.js"></script>
+    <script>
+        $(document).ready(function(){
+            $.awesome_toc({
+                overlay: true,
+                contentId: "post-content",
+            });
+        });
+    </script>
+
+
+    
+    
+    <!--kill ie6 -->
+<!--[if IE 6]>
+  <script src="//letskillie6.googlecode.com/svn/trunk/2/zh_CN.js"></script>
+<![endif]-->
+
+</body>
+</html>
