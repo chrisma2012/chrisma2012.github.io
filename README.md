@@ -1,3 +1,3 @@
 # Christopherma2012.github.io
 personal blog  
-**MD文件存放分支**
+**Hexo博客文件存放分支**
