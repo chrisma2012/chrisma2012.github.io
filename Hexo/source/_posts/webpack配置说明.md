@@ -1,3 +1,11 @@
+---
+title: webpack配置说明
+date: 2017-10-21 11:07:38
+tags:
+---
+之前使用webpack的时候总是不太明白webpack.config.js里面的参数是如何配置的，每个参数又有什么作用，所以也一直不敢随便更改  
+里面的配置,直接导致了对项目的不熟悉。因此趁现在有时间，遂对配置的字段的一一学习。
+<!-- more -->
 ```javascript  
 const path = require('path'); //获取node环境下的路径
 
@@ -12,7 +20,7 @@ module.exports = {
             {
             	test: /\.vue$/,
             	loader: 'vue-loader'
-            },
+            },     
             {
             	test: /\.js$/,
             	loader: 'babel-loader',
@@ -42,11 +50,11 @@ module.exports = {
 ```  
 [TOC]
 
-###Entry 
+### Entry 
 
 entry有三种配置方法，分别是字符串、数组和对象。写法又有两种，有无main属性，无main属性的为简洁写法。  
 
-####1、无main属性   
+#### 1、无main属性   
 **字符串写法**
 ```javascript  
  const config = {
@@ -72,7 +80,7 @@ const config = {
 }
 ```  
 
-####2、有main属性  
+#### 2、有main属性  
 **字符串写法 **
 ```javascript  
 const config = {
