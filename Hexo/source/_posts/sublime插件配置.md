@@ -74,4 +74,6 @@ tags:
             "operator": "equal",
             "operand": ""
         }]
-    }
+    }  
+### Markdown previewer   
+快捷键：ctrl + shift  + m 预览
