@@ -78,5 +78,6 @@ theme: landscape
 ## Docs: https://hexo.io/docs/deployment.html
 deploy:
   type: git
-  repo: https://github.com/ChristopherMa2012/Christopherma2012.github.io.git
+  #repo: https://github.com/ChristopherMa2012/Christopherma2012.github.io.git
+  repo: git@github.com:ChristopherMa2012/Christopherma2012.github.io.git
   branch: master
