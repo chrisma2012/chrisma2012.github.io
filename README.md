@@ -21,3 +21,9 @@ personal blog
 
 ### vsCode eslint  
 1、[vscode里面怎么根据eslint来格式化代码](https://www.zhihu.com/question/52777843)
+
+### 字体裁剪  
+1、[前端字体截取](https://juejin.im/post/5c1783216fb9a049b07d4330)
+
+### 去除无用CSS  
+1、[ CSS性能优化的8个技巧](https://juejin.im/post/5b6133a351882519d346853f)
