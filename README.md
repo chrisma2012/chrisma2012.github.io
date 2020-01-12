@@ -8,6 +8,8 @@ personal blog
 
 # 好文收藏 
 
+### js便捷技巧（转载）
+1、[ JavaScript 那些写出来会被同事揍的骚操作 ](https://zhuanlan.zhihu.com/p/100177208)
 ### 移动端适配  
 1、[使用Flexible实现手淘H5页面的终端适配](https://www.w3cplus.com/mobile/lib-flexible-for-html5-layout.html)
 ### service worker
