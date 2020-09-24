@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <canvas id="canvas" style="width:250px;height:150px;"></canvas>
+    <img src="./1.jpg" alt="" id="img2">
+    <img src="" alt="" id="img">
+    <script>
+        /* 
+           思路： 先绘制带圆角的矩形路径并裁剪，然后将图片绘制到canvas上。利用save(),restore()，clearRect()可将clip限制避免
+         */
+        const dom = document.getElementById('canvas');
+        function circleImg(cxt, x, y, width, height, radius) {
+            cxt.beginPath();
+            // 以（x + radius, y + radius)为圆点，半径为radius画弧线，起点为Math.PI（即180度），终点为Math.PI * 3 / 2（即270度），实际弧长对应的只有270-180 = 90度
+            cxt.arc(x + radius, y + radius, radius, Math.PI, Math.PI * 3 / 2);
+            //画直线到右上角
+            cxt.lineTo(width - radius + x, y);
+            cxt.arc(width - radius + x, radius + y, radius, Math.PI * 3 / 2, Math.PI * 2);
+            cxt.lineTo(width + x, height + y - radius);
+            cxt.arc(width - radius + x, height - radius + y, radius, 0, Math.PI * 1 / 2);
+            cxt.lineTo(radius + x, height + y);
+            cxt.arc(radius + x, height - radius + y, radius, Math.PI * 1 / 2, Math.PI);
+            // cxt.drawImage(img, 0, 0, width, height);
+            cxt.closePath();
+            ctx.clip();
+        }
+        var ctx = dom.getContext('2d');
+        circleImg(ctx, 20, 0, 200, 150, 10)
+        var img = new Image();
+        img.src = './1.jpg';
+        img.crossOrigin = "Anonymous";
+        img.onload = function () {
+            ctx.drawImage(img, 0, 0, 300, 150);
+        }
+    </script>
+</body>
+
+</html>
