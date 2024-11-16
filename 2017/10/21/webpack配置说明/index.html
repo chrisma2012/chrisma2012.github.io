@@ -1,0 +1,308 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  
+  <title>webpack配置说明 | Hexo</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="之前使用webpack的时候总是不太明白webpack.config.js里面的参数是如何配置的，每个参数又有什么作用，所以也一直不敢随便更改里面的配置,直接导致了对项目的不熟悉。因此趁现在有时间，遂对配置的字段的一一学习。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="webpack配置说明">
+<meta property="og:url" content="http://example.com/2017/10/21/webpack%E9%85%8D%E7%BD%AE%E8%AF%B4%E6%98%8E/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="之前使用webpack的时候总是不太明白webpack.config.js里面的参数是如何配置的，每个参数又有什么作用，所以也一直不敢随便更改里面的配置,直接导致了对项目的不熟悉。因此趁现在有时间，遂对配置的字段的一一学习。">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2017-10-21T03:07:38.000Z">
+<meta property="article:modified_time" content="2024-11-15T13:06:52.213Z">
+<meta property="article:author" content="John Doe">
+<meta name="twitter:card" content="summary">
+  
+    <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
+  
+  
+    <link rel="shortcut icon" href="/favicon.png">
+  
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  
+    
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.min.css">
+
+  
+  
+<meta name="generator" content="Hexo 7.3.0"></head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Hexo</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"><span class="fa fa-bars"></span></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+        
+          <a class="nav-icon" href="/atom.xml" title="RSS Feed"><span class="fa fa-rss"></span></a>
+        
+        <a class="nav-icon nav-search-btn" title="Search"><span class="fa fa-search"></span></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://example.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+
+      <div class="outer">
+        <section id="main"><article id="post-webpack配置说明" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2017/10/21/webpack%E9%85%8D%E7%BD%AE%E8%AF%B4%E6%98%8E/" class="article-date">
+  <time class="dt-published" datetime="2017-10-21T03:07:38.000Z" itemprop="datePublished">2017-10-21</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="p-name article-title" itemprop="headline name">
+      webpack配置说明
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <p>之前使用webpack的时候总是不太明白webpack.config.js里面的参数是如何配置的，每个参数又有什么作用，所以也一直不敢随便更改<br>里面的配置,直接导致了对项目的不熟悉。因此趁现在有时间，遂对配置的字段的一一学习。</p>
+<span id="more"></span>
+<pre><code class="javascript">const path = require(&#39;path&#39;); //获取node环境下的路径
+
+module.exports = &#123;
+    entry: &#39;./src/main.js&#39;,
+    output: &#123;
+        path: path.resolve(__dirname, &#39;dist&#39;), //打包后的文件输出的路径
+        filename: &#39;main.js&#39;   //
+    &#125;,
+    module:&#123;
+        rules: [
+            &#123;
+                test: /\.vue$/,
+                loader: &#39;vue-loader&#39;
+            &#125;,     
+            &#123;
+                test: /\.js$/,
+                loader: &#39;babel-loader&#39;,
+                exclude: /node_modules/
+            &#125;,
+            &#123;
+                test: /\.css$/,
+                loader: &#39;style-loader!css-loader&#39;
+            &#125;,
+            &#123;
+                test: /\.scss$/,
+                loader: &#39;style-loader!css-loader!sass-loader!&#39;
+            &#125;,
+            &#123;
+                test: /\.(png|jpg|gif|svg)$/,
+                loader: &#39;file-loader&#39;
+            &#125;
+        ]
+    &#125;,
+    plugins: [
+         new webpack.optimize.UglifyJsPlugin(),
+         new HtmlWebpackPlugin()	
+    ]
+
+&#125;
+</code></pre>
+<p>[TOC]</p>
+<h3 id="Entry"><a href="#Entry" class="headerlink" title="Entry"></a>Entry</h3><p>entry有三种配置方法，分别是字符串、数组和对象。写法又有两种，有无main属性，无main属性的为简洁写法。  </p>
+<h4 id="1、无main属性"><a href="#1、无main属性" class="headerlink" title="1、无main属性"></a>1、无main属性</h4><p><strong>字符串写法</strong></p>
+<pre><code class="javascript"> const config = &#123;
+      entry: &#39;main.js&#39;
+&#125;;
+
+module.exports = config; 
+</code></pre>
+<p>**数组写法 **</p>
+<pre><code class="javascript">const config = &#123;
+      entry: [&#39;main1.js&#39;,&#39;main2.js&#39;]
+&#125;  
+</code></pre>
+<p>**对象写法  **</p>
+<pre><code class="javascript">const config = &#123;
+      entry: &#123;
+            app: &#39;main.js&#39;,
+            vendors: &#39;main2.js&#39;
+      &#125;
+&#125;
+</code></pre>
+<h4 id="2、有main属性"><a href="#2、有main属性" class="headerlink" title="2、有main属性"></a>2、有main属性</h4><p>**字符串写法 **</p>
+<pre><code class="javascript">const config = &#123;
+      entry: &#123;
+            main: &#39;main.js&#39;
+      &#125;
+&#125; 
+</code></pre>
+<p><strong>数组写法</strong>  </p>
+<pre><code class="javascript">const config = &#123;
+      entry: &#123;
+            main:[
+              &#39;main1.js&#39;,
+              &#39;main2.js&#39;
+            ]
+      &#125;
+&#125;  
+</code></pre>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2017/10/21/webpack%E9%85%8D%E7%BD%AE%E8%AF%B4%E6%98%8E/" data-id="cm3k07cwz00073cum438k938h" data-title="webpack配置说明" class="article-share-link"><span class="fa fa-share">Share</span></a>
+      
+      
+      
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2017/10/21/canvas%E4%BD%93%E9%AA%8C/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          canvas体验
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2017/10/21/sublime%E6%8F%92%E4%BB%B6%E9%85%8D%E7%BD%AE/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">sublime插件配置</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+
+  
+    
+
+  
+    
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/07/">July 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/03/">March 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/02/">February 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/11/">November 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/10/">October 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/04/">April 2017</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2018/07/04/%E5%90%84%E7%A8%AE%E6%8E%92%E5%BA%8F%E7%AE%97%E6%B3%95/">各種排序算法</a>
+          </li>
+        
+          <li>
+            <a href="/2018/03/20/%E5%90%84%E7%A7%8Dprotoype/">各种protoype</a>
+          </li>
+        
+          <li>
+            <a href="/2018/02/09/VSCode%E4%BD%BF%E7%94%A8%E9%85%8D%E7%BD%AE/">VSCode使用配置</a>
+          </li>
+        
+          <li>
+            <a href="/2018/02/06/fetch%E4%BD%BF%E7%94%A8%E6%80%BB%E7%BB%93/">fetch使用总结</a>
+          </li>
+        
+          <li>
+            <a href="/2017/11/02/meta%E6%A0%87%E7%AD%BE%E9%9B%86%E5%90%88/">meta标签集合</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      
+      &copy; 2024 John Doe<br>
+      Powered by <a href="https://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+
+<script src="/js/jquery-3.6.4.min.js"></script>
+
+
+
+  
+<script src="/fancybox/jquery.fancybox.min.js"></script>
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+
+
+
+  </div>
+</body>
+</html>

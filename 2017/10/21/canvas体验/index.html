@@ -1,0 +1,292 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  
+  <title>canvas体验 | Hexo</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="最近在写一个刮刮乐的抽奖功能,总结起来主要的点有三个： 1. canvas的宽高设置这个是一个很奇怪的点，canvas的宽高必须是作为标签的属性存在,才会对之后js获取其宽高计算坐标点有效，否则按直接在样式里面写的宽高计算出来的坐标是不正确的。关于这个问题，后来在MDN的https:&#x2F;&#x2F;developer.mozilla.org&#x2F;en-US&#x2F;docs&#x2F;Web&#x2F;HTML&#x2F;Element&#x2F;canvas">
+<meta property="og:type" content="article">
+<meta property="og:title" content="canvas体验">
+<meta property="og:url" content="http://example.com/2017/10/21/canvas%E4%BD%93%E9%AA%8C/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="最近在写一个刮刮乐的抽奖功能,总结起来主要的点有三个： 1. canvas的宽高设置这个是一个很奇怪的点，canvas的宽高必须是作为标签的属性存在,才会对之后js获取其宽高计算坐标点有效，否则按直接在样式里面写的宽高计算出来的坐标是不正确的。关于这个问题，后来在MDN的https:&#x2F;&#x2F;developer.mozilla.org&#x2F;en-US&#x2F;docs&#x2F;Web&#x2F;HTML&#x2F;Element&#x2F;canvas">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2017-10-21T03:10:39.000Z">
+<meta property="article:modified_time" content="2024-11-15T13:06:52.213Z">
+<meta property="article:author" content="John Doe">
+<meta name="twitter:card" content="summary">
+  
+    <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
+  
+  
+    <link rel="shortcut icon" href="/favicon.png">
+  
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  
+    
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.min.css">
+
+  
+  
+<meta name="generator" content="Hexo 7.3.0"></head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Hexo</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"><span class="fa fa-bars"></span></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+        
+          <a class="nav-icon" href="/atom.xml" title="RSS Feed"><span class="fa fa-rss"></span></a>
+        
+        <a class="nav-icon nav-search-btn" title="Search"><span class="fa fa-search"></span></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://example.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+
+      <div class="outer">
+        <section id="main"><article id="post-canvas体验" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2017/10/21/canvas%E4%BD%93%E9%AA%8C/" class="article-date">
+  <time class="dt-published" datetime="2017-10-21T03:10:39.000Z" itemprop="datePublished">2017-10-21</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="p-name article-title" itemprop="headline name">
+      canvas体验
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <p>最近在写一个刮刮乐的抽奖功能,总结起来主要的点有三个：</p>
+<h3 id="1-canvas的宽高设置"><a href="#1-canvas的宽高设置" class="headerlink" title="1. canvas的宽高设置"></a>1. canvas的宽高设置</h3><p>这个是一个很奇怪的点，canvas的宽高必须是作为标签的属性存在,才会对之后js获取其宽高计算坐标点有效，否则按直接在样式里面写的宽高计算出来的坐标是不正确的。<br>关于这个问题，后来在MDN的<a target="_blank" rel="noopener" href="https://developer.mozilla.org/en-US/docs/Web/HTML/Element/canvas">https://developer.mozilla.org/en-US/docs/Web/HTML/Element/canvas</a>上找到了解释。<br> <span id="more"></span></p>
+<pre><code class="javascript">Attributes
+
+This element&#39;s attributes include the global attributes.   、
+
+height  
+
+The height of the coordinate space in CSS pixels. Defaults to 150. 
+
+moz-opaque 
+
+Lets the canvas know whether or not translucency will be a factor. If the canvas knows there&#39;s no translucency, painting performance can be optimized.
+
+width
+The width of the coordinate space in CSS pixels. Defaults to 300.    
+
+Usage notes  
+
+Alternative content  
+
+You may (and should) provide alternate content inside the canvas block. That content will be rendered both on older browsers that don not support canvas and in browsers with JavaScript disabled.
+
+Required canvas close tag
+
+Unlike the img element, the canvas element requires the closing tag.
+
+Sizing the canvas 
+
+The displayed size of the canvas can be changed using a stylesheet. The image is scaled during rendering to fit the styled size. If your renderings seem distorted, try specifying your width and height attributes explicitly in the canvas attributes, and not using CSS.    
+</code></pre>
+<p>在最后sizing the cancas说到，canvas在渲染的时候会进行缩放以适应样式内写好的宽高。所以如果出现渲染扭曲本意的时候，应该在canvas标签内，以属性的形式直接指定宽高。  </p>
+<h3 id="2-globalCompositeOperation"><a href="#2-globalCompositeOperation" class="headerlink" title="2. globalCompositeOperation"></a>2. <a target="_blank" rel="noopener" href="https://developer.mozilla.org/en-US/docs/Web/API/CanvasRenderingContext2D/globalCompositeOperation">globalCompositeOperation</a></h3><p>Canvas 2D接口。使用语法：ctx.globalCompositeOperation &#x3D; type (type为string类型)。其作用是，在绘制新图形的时候规定采用种混合操作。其值有：  </p>
+<p>1、 source-over: 新图形覆盖在旧的图形上方<br>2、 source-in:   新图形只有和旧图形重叠的部分才会绘制<br>3、 source-out:  新图形只有和旧图形不重叠的部分才会绘制<br>4、 source-atop: 新图形只有和旧图形重叠的部分才会绘制，并且新图形的透明度会跟随旧图形<br>5、 destination-over: 新图形绘制在旧图形的下方<br>6、 destination-in:   只有和新图形重叠的部分才会显示，并且透明度跟随旧图形<br>7、 destination-out:  只有新图形和旧图形不重叠的部分才会显示<br>8、 destination-atop: 旧图形只有和新图形重叠的部分才会显示，并且新图形在旧图形下方<br>9、 lighter:<br>10、copy: 只显示新图形<br>11、xor:<br>12、multiply:<br>13、screen:<br>14、overlay:<br>15、darken:<br>16、lighten:<br>17、color-dodge:<br>18、hard-light:<br>19、soft-light:<br>20、difference:<br>21、exclusion:<br>22、hue:<br>23、saturation:<br>24、color:<br>25、luminosity：  </p>
+<h3 id="3、屏幕触摸点的坐标获取"><a href="#3、屏幕触摸点的坐标获取" class="headerlink" title="3、屏幕触摸点的坐标获取"></a>3、屏幕触摸点的坐标获取</h3><pre><code class="html">    &lt;div id=&quot;container&quot; style=&quot;position: relative;width: 700px;height: 300px&quot;&gt;
+        &lt;div style=&quot;line-height:300px;font-size: 100px;&quot;&gt;恭喜您中奖了&lt;/div&gt;
+        &lt;canvas id=&quot;canvas&quot; width=&quot;700&quot; height=&quot;300&quot;   style=&quot;margin: auto;text-align: center;line-height: 300px;position: absolute;z-index: 2;top:0;left: 0;opacity: 1&quot;&gt;cesasdfasdfsdafasdfasd &lt;/canvas&gt;
+    &lt;/div&gt;
+    &lt;script type=&quot;text/javascript&quot;&gt;  
+</code></pre>
+<pre><code class="javascript">    var can = document.getElementById(&quot;canvas&quot;);
+    var offsetX = can.offsetLeft,
+        offsetY = can.offsetTop;
+    var ctx = can.getContext(&quot;2d&quot;);
+    ctx.fillStyle = &quot;#51555C&quot;;
+    ctx.beginPath();
+    ctx.fillRect(0, 0, 700, 300);
+    ctx.stroke();
+    ctx.closePath();
+    $(can).on(&quot;touchmove&quot;, function(e) &#123;
+        e.preventDefault();
+        var movePos = e.originalEvent.touches[0];
+        var x = (movePos.clientX + document.body.scrollLeft || movePos.pageX) - offsetX || 0,
+            y = (movePos.clientY + document.body.scrollTop || movePos.pageY) - offsetY || 0;
+        ctx.globalCompositeOperation = &quot;destination-out&quot;;
+        ctx.beginPath();
+        ctx.arc(x, y, 30, 0, 2 * Math.PI);
+       // console.log(&quot;x轴：&quot; + x, &quot;y轴&quot; + y);
+        ctx.fillStyle = &quot;rgb(255,255,255)&quot;;
+        ctx.fill();
+        ctx.closePath();
+    &#125;);
+</code></pre>
+<pre><code class="html">    &lt;/script&gt;  
+</code></pre>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2017/10/21/canvas%E4%BD%93%E9%AA%8C/" data-id="cm3k07cwv00033cum4k5cdzzw" data-title="canvas体验" class="article-share-link"><span class="fa fa-share">Share</span></a>
+      
+      
+      
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2017/11/01/%E7%A7%BB%E5%8A%A8%E7%AB%AF%E9%A1%B5%E9%9D%A2%E9%80%82%E9%85%8D%E7%9B%B8%E5%85%B3/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          移动端页面适配相关
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2017/10/21/webpack%E9%85%8D%E7%BD%AE%E8%AF%B4%E6%98%8E/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">webpack配置说明</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+
+  
+    
+
+  
+    
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/07/">July 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/03/">March 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/02/">February 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/11/">November 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/10/">October 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/04/">April 2017</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2018/07/04/%E5%90%84%E7%A8%AE%E6%8E%92%E5%BA%8F%E7%AE%97%E6%B3%95/">各種排序算法</a>
+          </li>
+        
+          <li>
+            <a href="/2018/03/20/%E5%90%84%E7%A7%8Dprotoype/">各种protoype</a>
+          </li>
+        
+          <li>
+            <a href="/2018/02/09/VSCode%E4%BD%BF%E7%94%A8%E9%85%8D%E7%BD%AE/">VSCode使用配置</a>
+          </li>
+        
+          <li>
+            <a href="/2018/02/06/fetch%E4%BD%BF%E7%94%A8%E6%80%BB%E7%BB%93/">fetch使用总结</a>
+          </li>
+        
+          <li>
+            <a href="/2017/11/02/meta%E6%A0%87%E7%AD%BE%E9%9B%86%E5%90%88/">meta标签集合</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      
+      &copy; 2024 John Doe<br>
+      Powered by <a href="https://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+
+<script src="/js/jquery-3.6.4.min.js"></script>
+
+
+
+  
+<script src="/fancybox/jquery.fancybox.min.js"></script>
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+
+
+
+  </div>
+</body>
+</html>
