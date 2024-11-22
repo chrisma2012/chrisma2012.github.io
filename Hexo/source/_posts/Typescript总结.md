@@ -108,6 +108,23 @@ import type { a } from "./a";
 ```
 上面示例中，import type 输入类型A是正确的，但是输入正常接口a就会报错。 
 
+###  *.d.ts文件声明全局变量  
+在 TypeScript 中，.d.ts 文件被用于声明全局变量、函数、类等的类型信息，以补充缺失或不确定的类型定义。这些声明文件不需要被导出，而是被自动地包含在项目的类型检查过程中。
+假设我们声明了一个B.d.ts文件，然后在A.ts文件内使用B.d.ts的类型声明，原则上不需要再手动引入，编辑器会全局检索。但是如果无法自动获取到类型的话，可在tsconfig.json里配置 
+```javascript  
+{
+  "compilerOptions": {
+   //
+  },
+  "files": ["type.d.ts"], //配置编译的文件
+  "include": [
+    "src"
+  ]
+}
+```
+**【题外话】**
+另外如果我们是通过vscode的提示直接通过`import aType from 'B' `的方式来使用的时候，程序会报找不到 B文件的错误！   
+解决方法是改为 `import type { aType } from 'B'` 引入就可以了。指定是加载ts类型，而不是普通变量。这里的原因可能是tsconfig.json配置不对，导致没有自动读取而需要手动引入*.d.ts文件。
 
 ## typeof 和 keyof  
 #### 首先是typeof  
