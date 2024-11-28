@@ -1,0 +1,4 @@
+```javascript
+//查询带有src属性，且值包含.svga字符串的元素，不限于script、img等元素
+var elements = document.querySelectorAll('[src$=".svga"]');
+```
