@@ -1,3 +1,4 @@
+```typescript  
 // 》》》使用的注意事项：
 // 1、IndeterHeightVirtualListConfig.minimumLeftItems 不能和接口的分页size字段值一致。否则不会发起请求
 // 2、IndeterHeightVirtualListConfig.size值需要实际渲染出来的高度大于容器视口，否则会因为不能滚动导致剩下的元素不能渲染出来
@@ -189,3 +190,4 @@ export default function useIndeterHeightVirtualList<T>(config: IndeterHeightVirt
   })
   return { renderData, updateActualHeight }
 }
+```
