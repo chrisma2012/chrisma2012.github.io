@@ -3,7 +3,7 @@
 // 1、IndeterHeightVirtualListConfig.minimumLeftItems 不能和接口的分页size字段值一致。否则不会发起请求
 // 2、IndeterHeightVirtualListConfig.size值需要实际渲染出来的高度大于容器视口，否则会因为不能滚动导致剩下的元素不能渲染出来
 // 3、当使用到IndeterHeightVirtualListConfig.getList参数时，注意检查分页的页数处理。
-
+// 4、IndeterHeightVirtualListConfig.itemHeight要和列表高度最小的子项Dom的一致，不然会出现滚动完后再往下滚动的现象。
 // 》》》问题排查：
 // 2、要开启浏览器缓存，不然列表项有图片的话会闪烁。
 // 3、滚动出现闪烁或者位置不一致的时候，注意检查列表子项的高度是否准确。（例如：内容可能有margin超出了子项的容器等，注意overflow:hidden包裹）
@@ -85,7 +85,7 @@ export default function useIndeterHeightVirtualList<T>(config: IndeterHeightVirt
       //倒序渲染。视口处于列表的底部，则收到新消息时，自动往上滚动
       if (config.isReverse && (scrollContainerEl?.offsetHeight as number) + (scrollContainerEl?.scrollTop as number) <= (actualHeightContainerEl?.offsetHeight as number)) {
         //如果是倒序渲染，则初始位为容器的底部
-        scrollContainerEl?.scrollTo({ top: distance })
+        scrollContainerEl?.scrollTo({ top: distance  })
       }
     }, 500)
   }
@@ -160,12 +160,12 @@ export default function useIndeterHeightVirtualList<T>(config: IndeterHeightVirt
     // 数据源发生变动
     watch(
       () => config.data.value,
-      (newVal) => {
+       (newVal) => {
         //如果最新的数据长度跟旧的列表长度一致，则判定没有新的消息记录请求了
         needRequestDataOnceAgain = dataSource.length !== newVal.length
         // 更新数据源
         dataSource = newVal
-
+      
         //倒序、非第一次赋值、出现滚动条了
         if (config.isReverse && dataSource.length > 0 && (scrollContainerEl?.offsetHeight as number) < (actualHeightContainerEl?.offsetHeight as number)) {
           //倘若视口不在列表的底部，则不执行更新操作
@@ -173,6 +173,7 @@ export default function useIndeterHeightVirtualList<T>(config: IndeterHeightVirt
             return
           }
           //倒序渲染，非第一次赋值后，后续均用updateRenderDataForward
+          
           return updateRenderDataForward(curScrollTop)
         }
         // 计算需要渲染的数据
@@ -190,4 +191,5 @@ export default function useIndeterHeightVirtualList<T>(config: IndeterHeightVirt
   })
   return { renderData, updateActualHeight }
 }
+
 ```
